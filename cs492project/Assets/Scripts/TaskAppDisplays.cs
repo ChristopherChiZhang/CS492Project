@@ -7,32 +7,15 @@ public class TaskAppDisplays : MonoBehaviour
     {
         gameObject.SetActive(true); // Enable the parent
 
-        // Find the child with the matching prefix "TaskAppx" and enable it
-        //GameObject[] taskAppDisplays = GetComponentsInChildren<GameObject>(true);
-        Debug.Log("Enabling " + taskApp.name + "Display");
+        // Find the child GameObject with the matching "TaskAppxDisplay" name and enable it
         transform.Find(taskApp.name + "Display").gameObject.SetActive(true);
-        //foreach (GameObject display in taskAppDisplays)
-        //{
-        //    if(display.name.StartsWith(taskApp.name))
-        //    {
-                
-        //        display.SetActive(true);
-        //    }
-        //    break;
-        //}
     }
 
     public void DisableAllTasks()
     {
-        //GameObject[] taskAppDisplays = GetComponentsInChildren<GameObject>(true);
-        //foreach(GameObject display in taskAppDisplays)
-        //{
-        //    Debug.Log("Disabling" + display.name);
-        //    display.SetActive(false);
-        //}
+        // Disable all child GameObjects
         foreach(Transform child in transform)
         {
-            Debug.Log("Disabling " + child.gameObject.name);
             child.gameObject.SetActive(false);
         }
         gameObject.SetActive(false); // Disable the parent

@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 6780435480476412797}
   - component: {fileID: 7803428643352347413}
   - component: {fileID: 5420385833825085920}
+  - component: {fileID: 4173581212229605433}
   m_Layer: 5
   m_Name: TaskApp
   m_TagString: Untagged
@@ -269,3 +270,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4173581212229605433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8795653505052122699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25018822275ad41ecbc0d09768578d68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

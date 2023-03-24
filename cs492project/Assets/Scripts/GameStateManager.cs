@@ -24,6 +24,7 @@ public class GameStateManager : MonoBehaviour
     public void StartTask(string task)
     {
         currentTask = task;
+        Debug.Log("Started task: " +  task);
     }
 
     public string GetCurrentTask()
@@ -34,6 +35,7 @@ public class GameStateManager : MonoBehaviour
     public void CompleteCurrentTask()
     {
         tasks[currentTask] = true;
+        Debug.Log("Task marked as completed: " + currentTask);
         currentTask = null;
     }
 

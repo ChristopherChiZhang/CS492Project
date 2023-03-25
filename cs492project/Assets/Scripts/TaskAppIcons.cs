@@ -3,10 +3,10 @@ using UnityEngine.UI;
 
 public class TaskAppIcons : MonoBehaviour
 {
-    public void SetActive()
+    public void SetActive(bool isActive)
     {
         // Enable self
-        gameObject.SetActive(true);
+        gameObject.SetActive(isActive);
 
         UpdateButtons();
     }
@@ -17,7 +17,8 @@ public class TaskAppIcons : MonoBehaviour
         GameStateManager gameStateManager = FindObjectOfType<GameStateManager>();
         foreach (Transform child in transform)
         {
-            child.gameObject.GetComponent<Button>().interactable = !gameStateManager.TaskIsComplete(child.name);
+            TaskApp taskApp = child.GetComponent<TaskApp>();
+            child.gameObject.GetComponent<Button>().interactable = !gameStateManager.TaskIsComplete(taskApp);
         }
     }
 }

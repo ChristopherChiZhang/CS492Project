@@ -41,8 +41,8 @@ public class GameStateManager : MonoBehaviour
         // TODO: Updated score in gamestate manager
         tasks[currentTask] = true; // Mark completed
         currentTask.TurnTimerOff(); // Stop timer
+        Debug.Log(currentTask.name + " completed in: " + currentTask.duration + " seconds");
         UpdateGameOver(); // Set gameOver if true
-        Debug.Log(currentTask.name + " duration: " + currentTask.duration);
         Debug.Log("Task marked as completed: " + currentTask);
         currentTask = null;
     }
@@ -79,7 +79,6 @@ public class GameStateManager : MonoBehaviour
         if (currentTask != null && currentTask.isTimerOn)
         {
             currentTask.duration += Time.deltaTime;
-            Debug.Log(this.name + "timer: " + currentTask.duration);
         }
     }
 }

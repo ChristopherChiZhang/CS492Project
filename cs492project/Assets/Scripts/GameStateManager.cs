@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -13,10 +16,18 @@ public class GameStateManager : MonoBehaviour
     // Stores whether the game is over or not
     bool gameOver = false;
 
+    // Game countdown timer
+    float countdownCurrent = 0f;
+    float countdownStarting = 300f;
+    public TextMeshProUGUI countdownText;
+    Color32 lowTime = new Color32(255, 114, 118, 255);
+
     void Start()
     {
         currentTask = null;
         tasks = new Dictionary<TaskApp, bool>();
+
+        countdownCurrent = countdownStarting;
 
         // Add tasks to dictionary
         FindObjectsOfType<TaskApp>().ToList().ForEach(taskApp =>
@@ -60,6 +71,9 @@ public class GameStateManager : MonoBehaviour
             Debug.Log("ALL TASKS COMPLETED.");
         }
         // TODO: Check if global game timer is up
+
+
+        if (IsGameOver()) GameOver();
     }
 
     public bool IsGameOver()
@@ -74,11 +88,31 @@ public class GameStateManager : MonoBehaviour
         return 0;
     }
 
+    public void GameOver() 
+    {
+        Debug.Log("Game over");
+        SceneManager.LoadScene("GameOverScene");
+    }
+
     private void Update()
     {
         if (currentTask != null && currentTask.isTimerOn)
         {
             currentTask.duration += Time.deltaTime;
         }
+
+        if (countdownCurrent <= 1f) {
+            gameOver = true;
+            UpdateGameOver();
+        }
+        if (countdownCurrent <= 31f) {
+            countdownText.color = lowTime;
+        }
+
+        countdownCurrent -= 1 * Time.deltaTime;
+        countdownText.text = string.Format("{0:0} : {1:00}", Mathf.FloorToInt(countdownCurrent / 60), Mathf.FloorToInt(countdownCurrent % 60));
+              
+
     }
+
 }

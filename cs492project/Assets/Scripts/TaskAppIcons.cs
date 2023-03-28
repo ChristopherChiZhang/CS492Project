@@ -3,10 +3,10 @@ using UnityEngine.UI;
 
 public class TaskAppIcons : MonoBehaviour
 {
-    public void SetActive(bool isActive)
+    public void SetActiveAndUpdateButton()
     {
         // Enable self
-        gameObject.SetActive(isActive);
+        gameObject.SetActive(true);
 
         UpdateButtons();
     }

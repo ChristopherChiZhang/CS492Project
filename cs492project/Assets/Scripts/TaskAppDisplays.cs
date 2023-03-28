@@ -10,7 +10,7 @@ public class TaskAppDisplays : MonoBehaviour
         transform.Find(taskApp.name + "Display").gameObject.SetActive(true);
 
         // Update game state
-        FindObjectOfType<GameStateManager>().StartTask(taskApp.name);
+        FindObjectOfType<GameStateManager>().StartTask(taskApp.GetComponent<TaskApp>());
     }
 
     public void DisableAllTasks()

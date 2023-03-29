@@ -8,12 +8,14 @@ using UnityEngine.UI;
 public class GameOverScript : MonoBehaviour
 {
 
-    public TextMeshProUGUI scoreBreakdown;
+    public TextMeshProUGUI scoreBreakdownPos;
+    public TextMeshProUGUI scoreBreakdownNeg;
     public TextMeshProUGUI totalScoreText;
 
     void Start() {
 
-        string scoreText = "";
+        string scoreTextPos = "";
+        string scoreTextNeg = "";
 
         int totalScores = PlayerPrefs.GetInt("totalScores");
         int totalScore = 0;
@@ -25,10 +27,26 @@ public class GameOverScript : MonoBehaviour
             string scoreString = PlayerPrefs.GetString("scoreString" + i);
             line += scoreNum + ": " + scoreString;
             totalScore += scoreNum;
-            scoreText += line + System.Environment.NewLine;
+
+            if (scoreNum > 0) {
+                scoreTextPos += line + System.Environment.NewLine;
+            } else {
+                scoreTextNeg += line + System.Environment.NewLine;
+            }
+            
         }
 
-        scoreBreakdown.text = scoreText;
+        if (scoreTextPos != "") {
+            scoreBreakdownPos.text = scoreTextPos;
+        } else {
+            scoreBreakdownPos.text = "No positive scores :(";
+        }
+        if (scoreTextNeg != "") {
+            scoreBreakdownNeg.text = scoreTextNeg;
+        } else {
+            scoreBreakdownNeg.text = "No negative scores :)";
+        }
+        
         totalScoreText.text = "Total Score: " + totalScore;
     }
 

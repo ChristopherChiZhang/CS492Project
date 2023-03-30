@@ -27,38 +27,42 @@ public class TaskApp2Display : MonoBehaviour
     public void FocusAddress()
     {
         addressSelected = true;
-
     }
 
     void Start()
     {
         page1Checkout.onClick.AddListener(() =>
         {
-            page1.SetActive(false);
-            page2.SetActive(true);
-            currentPage++;
+            FindObjectOfType<LoadingOverlay>().Show(() => {
+                page1.SetActive(false);
+                page2.SetActive(true);
+                currentPage++;
+            });
         });
 
         page2DenyLoc.onClick.AddListener(() =>
         {
-            
             page2PopupLoc.SetActive(false);
         });
 
         page2AllowLoc.onClick.AddListener(() =>
         {
-            task.AddScoreAndReason(-200, "Shared location data.");
-            page2AddressInput.text = address;
-            page2Confirm.interactable = true;
             page2PopupLoc.SetActive(false);
+            FindObjectOfType<LoadingOverlay>().Show(() => {
+                task.AddScoreAndReason(-200, "Shared location data.");
+                page2AddressInput.text = address;
+                page2Confirm.interactable = true;
+            });
         });
 
         page2Confirm.onClick.AddListener(() =>
         {
-            page2.SetActive(false);
-            page3.SetActive(true);
-            currentPage++;
-            task.AddScoreAndReason(500, "Bought this week’s groceries!");
+            FindObjectOfType<LoadingOverlay>().Show(() => {
+                page2.SetActive(false);
+                page3.SetActive(true);
+                currentPage++;
+                task.AddScoreAndReason(500, "Bought this week’s groceries!");
+            });
         });
 
 

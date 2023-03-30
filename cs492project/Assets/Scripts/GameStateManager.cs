@@ -90,6 +90,30 @@ public class GameStateManager : MonoBehaviour
 
     public void GameOver() 
     {
+        Debug.Log("TASKSDONE");
+        List<int> scoreNums = new List<int>();
+        List<string> scoreStrings = new List<string>();
+        int totalScores = 0;
+        
+
+        for (int index = 0; index < tasks.Count; index++) {
+          var item = tasks.ElementAt(index);
+          var itemKey = item.Key.scoresAndReasons.ToList();
+          
+          for (int i = 0; i < itemKey.Count; i++) {
+              var scoreItem = itemKey.ElementAt(i);
+              scoreNums.Add(scoreItem.Item1);
+              scoreStrings.Add(scoreItem.Item2);
+              totalScores++;
+          }
+        }
+        
+        PlayerPrefs.SetInt("totalScores", totalScores);
+        for (int i = 0; i < totalScores; i++) {
+            PlayerPrefs.SetInt("scoreNum" + i, scoreNums.ElementAt(i));
+            PlayerPrefs.SetString("scoreString" + i, scoreStrings.ElementAt(i));
+        }
+
         Debug.Log("Game over");
         SceneManager.LoadScene("GameOverScene");
     }

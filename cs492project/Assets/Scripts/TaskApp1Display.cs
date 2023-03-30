@@ -17,7 +17,6 @@ public class TaskAppDisplay1 : MonoBehaviour
     {
         reject.onClick.AddListener(() =>
         {
-            task.AddScoreAndReason(500, "Read a pawesome story!");
             popup.SetActive(false);
         });
         accept.onClick.AddListener(() =>
@@ -39,6 +38,7 @@ public class TaskAppDisplay1 : MonoBehaviour
                 page2.SetActive(false);
                 page3.SetActive(true);
                 nextPage.gameObject.SetActive(false);
+                task.AddScoreAndReason(500, "Read a pawesome story!");
             }
         });
     }

@@ -46,11 +46,6 @@ public class GameStateManager : MonoBehaviour
         currentTask.TurnTimerOn();
     }
 
-    public TaskApp GetCurrentTask()
-    {
-        return currentTask;
-    }
-
     public void BackToHomeScreen()
     {
         CompleteCurrentTask();
@@ -83,22 +78,7 @@ public class GameStateManager : MonoBehaviour
             gameOver = true;
             Debug.Log("ALL TASKS COMPLETED.");
         }
-        // TODO: Check if global game timer is up
-
-
-        if (IsGameOver()) GameOver();
-    }
-
-    public bool IsGameOver()
-    {
-        return gameOver;
-    }
-
-    public int ComputeTotalScore()
-    {
-        // TODO: Compute total score
-        // and populate the scroll rect on the end page with Text objects?
-        return 0;
+        if (gameOver) GameOver();
     }
 
     public void GameOver()
@@ -153,8 +133,6 @@ public class GameStateManager : MonoBehaviour
 
         countdownCurrent -= 1 * Time.deltaTime;
         countdownText.text = string.Format("{0:0} : {1:00}", Mathf.FloorToInt(countdownCurrent / 60), Mathf.FloorToInt(countdownCurrent % 60));
-
-
     }
 
 }

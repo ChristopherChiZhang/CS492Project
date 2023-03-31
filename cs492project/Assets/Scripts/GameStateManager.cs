@@ -38,7 +38,12 @@ public class GameStateManager : MonoBehaviour
     public void StartTask(TaskApp task)
     {
         currentTask = task;
-        Debug.Log("Started task: " + task);
+        Debug.Log("Started task: " + currentTask.name);
+        FindObjectOfType<TaskAppIcons>().gameObject.SetActive(false);
+        FindObjectOfType<TaskWindow>(true).gameObject.SetActive(true); // (to be removed)
+        FindObjectOfType<TaskAppDisplays>(true).EnableTask(currentTask);
+        FindObjectOfType<ToDoListWindow>().gameObject.SetActive(false);
+        currentTask.TurnTimerOn();
     }
 
     public TaskApp GetCurrentTask()
@@ -49,9 +54,10 @@ public class GameStateManager : MonoBehaviour
     public void BackToHomeScreen()
     {
         CompleteCurrentTask();
-        FindObjectOfType<TaskWindow>().gameObject.SetActive(false); // Disable the task window (to be removed)
+        FindObjectOfType<TaskWindow>().gameObject.SetActive(false); // (to be removed)
         FindObjectOfType<TaskAppIcons>(true).SetActiveAndUpdateButton(); // Disable completed tasks and display app icons
-        FindObjectOfType<TaskAppDisplays>(true).DisableAllTasks(); // Disable task from being seen to the user
+        FindObjectOfType<TaskAppDisplays>().DisableAllTasks(); // Disable task from being seen to the user
+        FindObjectOfType<ToDoListWindow>(true).gameObject.SetActive(true); // Enable the to do list
     }
 
     public void CompleteCurrentTask()

@@ -7,6 +7,7 @@ public class TaskApp2Display : MonoBehaviour
     public TaskApp task;  // Corresponding task app to this display
 
     public GameObject page1;  // First page
+    public Toggle page1ShareData;
     public Button page1Checkout;
 
     public GameObject page2;  // Second page
@@ -24,6 +25,7 @@ public class TaskApp2Display : MonoBehaviour
     private float t = 0f;  // Timer
     private int x = 0;  // Counter to make sure only every few key presses adds a letter to the address
 
+    // Page 2: player clicks on address box
     public void FocusAddress()
     {
         addressSelected = true;
@@ -31,30 +33,41 @@ public class TaskApp2Display : MonoBehaviour
 
     void Start()
     {
+        // Page 1 -> page 2
         page1Checkout.onClick.AddListener(() =>
         {
             FindObjectOfType<LoadingOverlay>().Show(() => {
+                // Check toggle
+                if (page1ShareData.isOn)
+                {
+                    task.AddScoreAndReason(-150, "Shared shopping habits.");
+                }
+
                 page1.SetActive(false);
                 page2.SetActive(true);
                 currentPage++;
             });
         });
 
+        // Page 2: deny location
         page2DenyLoc.onClick.AddListener(() =>
         {
             page2PopupLoc.SetActive(false);
         });
 
+        // Page 2: allow location
         page2AllowLoc.onClick.AddListener(() =>
         {
             page2PopupLoc.SetActive(false);
             FindObjectOfType<LoadingOverlay>().Show(() => {
-                task.AddScoreAndReason(-200, "Shared location data.");
+                task.AddScoreAndReason(-150, "Shared location data.");
+                // Autofill address and enable going to page 3
                 page2AddressInput.text = address;
                 page2Confirm.interactable = true;
             });
         });
 
+        // Page 2 -> page 3
         page2Confirm.onClick.AddListener(() =>
         {
             FindObjectOfType<LoadingOverlay>().Show(() => {
@@ -72,9 +85,10 @@ public class TaskApp2Display : MonoBehaviour
     {
         t += Time.deltaTime;
 
+        // Handle typing in page 2 address box
         if (currentPage == 2 && addressSelected)
         {
-            // Input cursor effect
+            // Input cursor blinking effect
             if (t >= 0.5f)
             {
                 t = 0f;

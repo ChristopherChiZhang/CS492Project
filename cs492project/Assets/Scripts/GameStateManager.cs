@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using TMPro;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -39,23 +38,32 @@ public class GameStateManager : MonoBehaviour
     public void StartTask(TaskApp task)
     {
         currentTask = task;
-        Debug.Log("Started task: " + task);
+        Debug.Log("Started task: " + currentTask.name);
+        FindObjectOfType<TaskAppIcons>().gameObject.SetActive(false);
+        FindObjectOfType<TaskWindow>(true).gameObject.SetActive(true); // (to be removed)
+        FindObjectOfType<TaskAppDisplays>(true).EnableTask(currentTask);
+        FindObjectOfType<ToDoListWindow>().gameObject.SetActive(false);
+        currentTask.TurnTimerOn();
     }
 
-    public TaskApp GetCurrentTask()
+    public void BackToHomeScreen()
     {
-        return currentTask;
+        CompleteCurrentTask();
+        FindObjectOfType<TaskWindow>().gameObject.SetActive(false); // (to be removed)
+        FindObjectOfType<TaskAppIcons>(true).SetActiveAndUpdateButton(); // Disable completed tasks and display app icons
+        FindObjectOfType<TaskAppDisplays>().DisableAllTasks(); // Disable task from being seen to the user
+        FindObjectOfType<ToDoListWindow>(true).gameObject.SetActive(true); // Enable the to do list
+        FindObjectOfType<ToDoListWindow>(true).UpdateToDoList(currentTask);
+        currentTask = null;
     }
 
-    public void CompleteCurrentTask()
+    void CompleteCurrentTask()
     {
-        // TODO: Updated score in gamestate manager
         tasks[currentTask] = true; // Mark completed
         currentTask.TurnTimerOff(); // Stop timer
         Debug.Log(currentTask.name + " completed in: " + currentTask.duration + " seconds");
         UpdateGameOver(); // Set gameOver if true
         Debug.Log("Task marked as completed: " + currentTask);
-        currentTask = null;
     }
 
     public bool TaskIsComplete(TaskApp task)
@@ -70,46 +78,34 @@ public class GameStateManager : MonoBehaviour
             gameOver = true;
             Debug.Log("ALL TASKS COMPLETED.");
         }
-        // TODO: Check if global game timer is up
-
-
-        if (IsGameOver()) GameOver();
+        if (gameOver) GameOver();
     }
 
-    public bool IsGameOver()
+    public void GameOver()
     {
-        return gameOver;
-    }
-
-    public int ComputeTotalScore()
-    {
-        // TODO: Compute total score
-        // and populate the scroll rect on the end page with Text objects?
-        return 0;
-    }
-
-    public void GameOver() 
-    {
-        Debug.Log("TASKSDONE");
+        Debug.Log("All tasks complete.");
         List<int> scoreNums = new List<int>();
         List<string> scoreStrings = new List<string>();
         int totalScores = 0;
-        
 
-        for (int index = 0; index < tasks.Count; index++) {
-          var item = tasks.ElementAt(index);
-          var itemKey = item.Key.scoresAndReasons.ToList();
-          
-          for (int i = 0; i < itemKey.Count; i++) {
-              var scoreItem = itemKey.ElementAt(i);
-              scoreNums.Add(scoreItem.Item1);
-              scoreStrings.Add(scoreItem.Item2);
-              totalScores++;
-          }
+
+        for (int index = 0; index < tasks.Count; index++)
+        {
+            var item = tasks.ElementAt(index);
+            var itemKey = item.Key.scoresAndReasons.ToList();
+
+            for (int i = 0; i < itemKey.Count; i++)
+            {
+                var scoreItem = itemKey.ElementAt(i);
+                scoreNums.Add(scoreItem.Item1);
+                scoreStrings.Add(scoreItem.Item2);
+                totalScores++;
+            }
         }
-        
+
         PlayerPrefs.SetInt("totalScores", totalScores);
-        for (int i = 0; i < totalScores; i++) {
+        for (int i = 0; i < totalScores; i++)
+        {
             PlayerPrefs.SetInt("scoreNum" + i, scoreNums.ElementAt(i));
             PlayerPrefs.SetString("scoreString" + i, scoreStrings.ElementAt(i));
         }
@@ -125,18 +121,18 @@ public class GameStateManager : MonoBehaviour
             currentTask.duration += Time.deltaTime;
         }
 
-        if (countdownCurrent <= 1f) {
+        if (countdownCurrent <= 1f)
+        {
             gameOver = true;
             UpdateGameOver();
         }
-        if (countdownCurrent <= 31f) {
+        if (countdownCurrent <= 31f)
+        {
             countdownText.color = lowTime;
         }
 
         countdownCurrent -= 1 * Time.deltaTime;
         countdownText.text = string.Format("{0:0} : {1:00}", Mathf.FloorToInt(countdownCurrent / 60), Mathf.FloorToInt(countdownCurrent % 60));
-              
-
     }
 
 }

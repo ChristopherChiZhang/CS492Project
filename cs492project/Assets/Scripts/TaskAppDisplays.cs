@@ -2,15 +2,11 @@ using UnityEngine;
 
 public class TaskAppDisplays : MonoBehaviour
 {
-    public void EnableTask(GameObject taskApp)
+    public void EnableTask(TaskApp taskApp)
     {
         gameObject.SetActive(true); // Enable the parent
-
         // Find the child GameObject with the matching "TaskAppxDisplay" name and enable it
         transform.Find(taskApp.name + "Display").gameObject.SetActive(true);
-
-        // Update game state
-        FindObjectOfType<GameStateManager>().StartTask(taskApp.GetComponent<TaskApp>());
     }
 
     public void DisableAllTasks()

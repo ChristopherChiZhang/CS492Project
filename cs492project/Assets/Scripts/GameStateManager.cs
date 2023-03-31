@@ -58,16 +58,17 @@ public class GameStateManager : MonoBehaviour
         FindObjectOfType<TaskAppIcons>(true).SetActiveAndUpdateButton(); // Disable completed tasks and display app icons
         FindObjectOfType<TaskAppDisplays>().DisableAllTasks(); // Disable task from being seen to the user
         FindObjectOfType<ToDoListWindow>(true).gameObject.SetActive(true); // Enable the to do list
+        FindObjectOfType<ToDoListWindow>(true).UpdateToDoList(currentTask);
+        currentTask = null;
     }
 
-    public void CompleteCurrentTask()
+    void CompleteCurrentTask()
     {
         tasks[currentTask] = true; // Mark completed
         currentTask.TurnTimerOff(); // Stop timer
         Debug.Log(currentTask.name + " completed in: " + currentTask.duration + " seconds");
         UpdateGameOver(); // Set gameOver if true
         Debug.Log("Task marked as completed: " + currentTask);
-        currentTask = null;
     }
 
     public bool TaskIsComplete(TaskApp task)
@@ -102,7 +103,7 @@ public class GameStateManager : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("TASKSDONE");
+        Debug.Log("All tasks complete.");
         List<int> scoreNums = new List<int>();
         List<string> scoreStrings = new List<string>();
         int totalScores = 0;

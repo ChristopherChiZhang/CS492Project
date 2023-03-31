@@ -1477,7 +1477,7 @@ GameObject:
   - component: {fileID: 275470867}
   - component: {fileID: 275470866}
   m_Layer: 5
-  m_Name: Task5Summary
+  m_Name: TaskApp5Summary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3540,7 +3540,7 @@ GameObject:
   - component: {fileID: 681015539}
   - component: {fileID: 681015538}
   m_Layer: 5
-  m_Name: Task2Summary
+  m_Name: TaskApp2Summary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7986,7 +7986,7 @@ GameObject:
   - component: {fileID: 1412634343}
   - component: {fileID: 1412634342}
   m_Layer: 5
-  m_Name: Task6Summary
+  m_Name: TaskApp6Summary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8009,7 +8009,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -269.4, y: -106.5}
+  m_AnchoredPosition: {x: -269.4, y: -101}
   m_SizeDelta: {x: 170.2, y: 56.13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1412634342
@@ -9154,7 +9154,7 @@ GameObject:
   - component: {fileID: 1628247887}
   - component: {fileID: 1628247886}
   m_Layer: 5
-  m_Name: Task4Summary
+  m_Name: TaskApp4Summary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9390,7 +9390,7 @@ GameObject:
   - component: {fileID: 1659247659}
   - component: {fileID: 1659247658}
   m_Layer: 5
-  m_Name: Task1Summary
+  m_Name: TaskApp1Summary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9597,45 +9597,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 418281633}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1438220853}
         m_TargetAssemblyTypeName: GameStateManager, Assembly-CSharp
-        m_MethodName: CompleteCurrentTask
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 911789602}
-        m_TargetAssemblyTypeName: TaskAppIcons, Assembly-CSharp
-        m_MethodName: SetActiveAndUpdateButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 625595323}
-        m_TargetAssemblyTypeName: TaskAppDisplays, Assembly-CSharp
-        m_MethodName: DisableAllTasks
+        m_MethodName: BackToHomeScreen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9695,7 +9659,7 @@ GameObject:
   - component: {fileID: 1683998380}
   - component: {fileID: 1683998379}
   m_Layer: 5
-  m_Name: Task3Summary
+  m_Name: TaskApp3Summary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using TMPro;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -47,9 +46,16 @@ public class GameStateManager : MonoBehaviour
         return currentTask;
     }
 
+    public void BackToHomeScreen()
+    {
+        CompleteCurrentTask();
+        FindObjectOfType<TaskWindow>().gameObject.SetActive(false); // Disable the task window (to be removed)
+        FindObjectOfType<TaskAppIcons>(true).SetActiveAndUpdateButton(); // Disable completed tasks and display app icons
+        FindObjectOfType<TaskAppDisplays>(true).DisableAllTasks(); // Disable task from being seen to the user
+    }
+
     public void CompleteCurrentTask()
     {
-        // TODO: Updated score in gamestate manager
         tasks[currentTask] = true; // Mark completed
         currentTask.TurnTimerOff(); // Stop timer
         Debug.Log(currentTask.name + " completed in: " + currentTask.duration + " seconds");
@@ -88,28 +94,31 @@ public class GameStateManager : MonoBehaviour
         return 0;
     }
 
-    public void GameOver() 
+    public void GameOver()
     {
         Debug.Log("TASKSDONE");
         List<int> scoreNums = new List<int>();
         List<string> scoreStrings = new List<string>();
         int totalScores = 0;
-        
 
-        for (int index = 0; index < tasks.Count; index++) {
-          var item = tasks.ElementAt(index);
-          var itemKey = item.Key.scoresAndReasons.ToList();
-          
-          for (int i = 0; i < itemKey.Count; i++) {
-              var scoreItem = itemKey.ElementAt(i);
-              scoreNums.Add(scoreItem.Item1);
-              scoreStrings.Add(scoreItem.Item2);
-              totalScores++;
-          }
+
+        for (int index = 0; index < tasks.Count; index++)
+        {
+            var item = tasks.ElementAt(index);
+            var itemKey = item.Key.scoresAndReasons.ToList();
+
+            for (int i = 0; i < itemKey.Count; i++)
+            {
+                var scoreItem = itemKey.ElementAt(i);
+                scoreNums.Add(scoreItem.Item1);
+                scoreStrings.Add(scoreItem.Item2);
+                totalScores++;
+            }
         }
-        
+
         PlayerPrefs.SetInt("totalScores", totalScores);
-        for (int i = 0; i < totalScores; i++) {
+        for (int i = 0; i < totalScores; i++)
+        {
             PlayerPrefs.SetInt("scoreNum" + i, scoreNums.ElementAt(i));
             PlayerPrefs.SetString("scoreString" + i, scoreStrings.ElementAt(i));
         }
@@ -125,17 +134,19 @@ public class GameStateManager : MonoBehaviour
             currentTask.duration += Time.deltaTime;
         }
 
-        if (countdownCurrent <= 1f) {
+        if (countdownCurrent <= 1f)
+        {
             gameOver = true;
             UpdateGameOver();
         }
-        if (countdownCurrent <= 31f) {
+        if (countdownCurrent <= 31f)
+        {
             countdownText.color = lowTime;
         }
 
         countdownCurrent -= 1 * Time.deltaTime;
         countdownText.text = string.Format("{0:0} : {1:00}", Mathf.FloorToInt(countdownCurrent / 60), Mathf.FloorToInt(countdownCurrent % 60));
-              
+
 
     }
 

@@ -210,7 +210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5731058887313956530, guid: 43c1945068b3cff4bbd9d0abb7c1271f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1.4599915
+      value: -1.4599609
       objectReference: {fileID: 0}
     - target: {fileID: 5731058887313956530, guid: 43c1945068b3cff4bbd9d0abb7c1271f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1559,7 +1559,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.348999, y: -9.8685}
+  m_AnchoredPosition: {x: -1.348999, y: -9.86853}
   m_SizeDelta: {x: 629.73, y: 204.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &211084305
@@ -1940,7 +1940,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.010009766, y: -8.959991}
+  m_AnchoredPosition: {x: 0.010009766, y: -8.959961}
   m_SizeDelta: {x: 620, y: 206.56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &333341084
@@ -2268,7 +2268,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -10.3550415, y: 0}
+  m_AnchoredPosition: {x: -10.35498, y: 0}
   m_SizeDelta: {x: 20.71, y: 366.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &513169056
@@ -4844,7 +4844,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5731058887313956530, guid: 43c1945068b3cff4bbd9d0abb7c1271f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1.4599915
+      value: -1.4599609
       objectReference: {fileID: 0}
     - target: {fileID: 5731058887313956530, guid: 43c1945068b3cff4bbd9d0abb7c1271f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6062,7 +6062,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5731058887313956530, guid: 43c1945068b3cff4bbd9d0abb7c1271f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1.4599915
+      value: -1.4599609
       objectReference: {fileID: 0}
     - target: {fileID: 5731058887313956530, guid: 43c1945068b3cff4bbd9d0abb7c1271f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6677,7 +6677,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[NAME] wants to know your location.
+  m_text: 'SmartCart wants to know your location.
 
 
     Allowing may speed up
@@ -7185,7 +7185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5731058887313956530, guid: 43c1945068b3cff4bbd9d0abb7c1271f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1.4599915
+      value: -1.4599609
       objectReference: {fileID: 0}
     - target: {fileID: 5731058887313956530, guid: 43c1945068b3cff4bbd9d0abb7c1271f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -10926,7 +10926,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5731058887313956530, guid: 43c1945068b3cff4bbd9d0abb7c1271f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1.4599915
+      value: -1.4599609
       objectReference: {fileID: 0}
     - target: {fileID: 5731058887313956530, guid: 43c1945068b3cff4bbd9d0abb7c1271f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -11693,7 +11693,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Share my shopping habits with [NAME] to help personalize my shopping experience
+  m_text: Share my shopping habits with SmartCart to help personalize my shopping
+    experience
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5b1936668fb97814589fbece7e2dab00, type: 2}
   m_sharedMaterial: {fileID: -3116525095460179669, guid: 5b1936668fb97814589fbece7e2dab00, type: 2}
@@ -11805,7 +11806,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.010009766, y: -8.959991}
+  m_AnchoredPosition: {x: 0.010009766, y: -8.959961}
   m_SizeDelta: {x: 620, y: 206.56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1827091481
@@ -11957,7 +11958,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.010009766, y: -8.959991}
+  m_AnchoredPosition: {x: 0.010009766, y: -8.959961}
   m_SizeDelta: {x: 620, y: 206.56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1844335448
@@ -13272,7 +13273,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -228.04004, y: 214.0525}
+  m_AnchoredPosition: {x: -228.04007, y: 214.0525}
   m_SizeDelta: {x: -486.08002, y: -459.105}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2099840174
@@ -13687,7 +13688,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Thank you for shopping at [NAME]!
+  m_text: 'Thank you for shopping at SmartCart!
 
 
     Your order should arrive within
@@ -14304,7 +14305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5731058887313956530, guid: 43c1945068b3cff4bbd9d0abb7c1271f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1.4599915
+      value: -1.4599609
       objectReference: {fileID: 0}
     - target: {fileID: 5731058887313956530, guid: 43c1945068b3cff4bbd9d0abb7c1271f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -66,7 +66,7 @@ public class GameStateManager : MonoBehaviour
     {
         tasks[currentTask] = true; // Mark completed
         currentTask.TurnTimerOff(); // Stop timer
-        Debug.Log(currentTask.name + " completed in: " + currentTask.duration + " seconds");
+        currentTask.AddScoreAndReason(currentTask.GetTimeScore(), "Completed a task in " + (int)System.Math.Round(currentTask.duration) + " seconds.");
         UpdateGameOver(); // Set gameOver if true
         Debug.Log("Task marked as completed: " + currentTask);
     }

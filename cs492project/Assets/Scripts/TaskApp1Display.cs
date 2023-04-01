@@ -7,6 +7,7 @@ public class TaskAppDisplay1 : MonoBehaviour
     public Button reject; // The reject button
     public Button accept; // The accept button
     public Button nextPage; // The next page button
+    public GameObject finish; // The finish task button
     public GameObject page1; // The first page
     public GameObject page2; // The second page
     public GameObject page3; // The third page
@@ -37,6 +38,7 @@ public class TaskAppDisplay1 : MonoBehaviour
             {
                 page2.SetActive(false);
                 page3.SetActive(true);
+                finish.SetActive(true);
                 nextPage.gameObject.SetActive(false);
                 task.AddScoreAndReason(500, "Read a pawesome story!");
             }

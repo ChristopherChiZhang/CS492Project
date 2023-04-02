@@ -1,11 +1,19 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LoadingOverlay : MonoBehaviour
 {
     public GameObject loadingScreen;
     public GameObject loadingIcon;
+    private Sprite defaultImage;
+
+    private void Start()
+    {
+        defaultImage = Resources.Load<Sprite>("General/GenericLoader");
+        SetLoadingIconImage();
+    }
 
     private IEnumerator DelayedRunCoroutine(Action callback, float seconds, bool showOverlay)
     {
@@ -36,5 +44,17 @@ public class LoadingOverlay : MonoBehaviour
     void Update()
     {
         loadingIcon.gameObject.transform.Rotate(0.0f, 0.0f, -Time.deltaTime * 200, Space.Self);
+    }
+
+    public void SetLoadingIconImage(Sprite image = null)
+    {
+        if (image != null)
+        {
+            loadingIcon.GetComponent<Image>().sprite = image;
+        }
+        else
+        {
+            loadingIcon.GetComponent<Image>().sprite = defaultImage;
+        }
     }
 }

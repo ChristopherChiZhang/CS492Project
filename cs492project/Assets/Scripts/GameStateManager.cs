@@ -84,7 +84,6 @@ public class GameStateManager : MonoBehaviour
         if (tasks.Values.All(v => v == true))
         {
             gameOver = true;
-            Debug.Log("ALL TASKS COMPLETED.");
         }
         if (gameOver) GameOver();
     }
@@ -117,8 +116,6 @@ public class GameStateManager : MonoBehaviour
             PlayerPrefs.SetInt("scoreNum" + i, scoreNums.ElementAt(i));
             PlayerPrefs.SetString("scoreString" + i, scoreStrings.ElementAt(i));
         }
-
-        Debug.Log("Game over");
         SceneManager.LoadScene("GameOverScene");
     }
 

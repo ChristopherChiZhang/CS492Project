@@ -6,7 +6,7 @@ public class TaskApp : Timer
 {
     public List<Tuple<int, string>> scoresAndReasons = new List<Tuple<int, string>>();
     float initialTimeScore = 1000; // The base score a player can get if a task is completed instantly
-    int pointLoss = 50; // The amount of points a player loses per second from the initial amount
+    int pointLoss = 25; // The amount of points a player loses per second from the initial amount
 
     public TaskApp()
     {
@@ -21,6 +21,6 @@ public class TaskApp : Timer
 
     public int GetTimeScore()
     {
-        return (int)Math.Round(initialTimeScore - duration * pointLoss);
+        return Math.Max((int)Math.Round(initialTimeScore - duration * pointLoss), 0);
     }
 }

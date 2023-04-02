@@ -33,10 +33,14 @@ public class TaskApp2Display : MonoBehaviour
 
     void Start()
     {
+        LoadingOverlay overLay = FindObjectOfType<LoadingOverlay>();
+
         // Page 1 -> page 2
         page1Checkout.onClick.AddListener(() =>
         {
-            FindObjectOfType<LoadingOverlay>().DelayedExecute(() =>
+            Sprite loadingImage = Resources.Load<Sprite>("Task2/TurnipIcon");
+            overLay.SetLoadingIconImage(loadingImage); // change loading icon to turnip
+            overLay.DelayedExecute(() =>
             {
                 // Check toggle
                 if (page1ShareData.isOn)
@@ -49,7 +53,7 @@ public class TaskApp2Display : MonoBehaviour
                 currentPage++;
 
                 // Delay popup for a bit
-                FindObjectOfType<LoadingOverlay>().DelayedExecute(() =>
+                overLay.DelayedExecute(() =>
                 {
                     page2PopupLoc.SetActive(true);
                 }, 0.5f, false);
@@ -66,7 +70,7 @@ public class TaskApp2Display : MonoBehaviour
         page2AllowLoc.onClick.AddListener(() =>
         {
             page2PopupLoc.SetActive(false);
-            FindObjectOfType<LoadingOverlay>().DelayedExecute(() =>
+            overLay.DelayedExecute(() =>
             {
                 task.AddScoreAndReason(-150, "Shared location data.");
                 // Autofill address and enable going to page 3
@@ -78,13 +82,13 @@ public class TaskApp2Display : MonoBehaviour
         // Page 2 -> page 3
         page2Confirm.onClick.AddListener(() =>
         {
-            FindObjectOfType<LoadingOverlay>().DelayedExecute(() =>
+            overLay.DelayedExecute(() =>
             {
                 page2.SetActive(false);
                 page3.SetActive(true);
                 currentPage++;
-
                 task.AddScoreAndReason(500, "Bought this week’s groceries!");
+                overLay.SetLoadingIconImage(); // Change loading icon back to default
             });
         });
 

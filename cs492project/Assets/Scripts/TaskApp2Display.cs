@@ -36,7 +36,7 @@ public class TaskApp2Display : MonoBehaviour
         // Page 1 -> page 2
         page1Checkout.onClick.AddListener(() =>
         {
-            FindObjectOfType<LoadingOverlay>().Show(() =>
+            FindObjectOfType<LoadingOverlay>().DelayedExecute(() =>
             {
                 // Check toggle
                 if (page1ShareData.isOn)
@@ -46,6 +46,7 @@ public class TaskApp2Display : MonoBehaviour
 
                 page1.SetActive(false);
                 page2.SetActive(true);
+                page2PopupLoc.SetActive(true);
                 currentPage++;
             });
         });
@@ -60,7 +61,7 @@ public class TaskApp2Display : MonoBehaviour
         page2AllowLoc.onClick.AddListener(() =>
         {
             page2PopupLoc.SetActive(false);
-            FindObjectOfType<LoadingOverlay>().Show(() =>
+            FindObjectOfType<LoadingOverlay>().DelayedExecute(() =>
             {
                 task.AddScoreAndReason(-150, "Shared location data.");
                 // Autofill address and enable going to page 3
@@ -72,7 +73,7 @@ public class TaskApp2Display : MonoBehaviour
         // Page 2 -> page 3
         page2Confirm.onClick.AddListener(() =>
         {
-            FindObjectOfType<LoadingOverlay>().Show(() =>
+            FindObjectOfType<LoadingOverlay>().DelayedExecute(() =>
             {
                 page2.SetActive(false);
                 page3.SetActive(true);

@@ -7,24 +7,21 @@ public class LoadingOverlay : MonoBehaviour
     public GameObject loadingScreen;
     public GameObject loadingIcon;
 
-    private IEnumerator LoadCoroutine(Action onFinish, float seconds)
+    private IEnumerator DelayedRunCoroutine(Action callback, float seconds, bool showOverlay)
     {
-        Show();
+        if (showOverlay) Show();
         yield return new WaitForSeconds(seconds);
-        Hide();
-        if (onFinish != null)
-        {
-            onFinish();
-        }
+        if (showOverlay) Hide();
+        if (callback != null) callback();
     }
 
-    // Show loading screen for a set amount of seconds
-    public void Show(Action onFinish = null, float seconds = 1f)
+    // Wait for a set delay before executing callback()
+    public void DelayedExecute(Action callback = null, float seconds = 1f, bool showOverlay = true)
     {
-        StartCoroutine(LoadCoroutine(onFinish, seconds));
+        StartCoroutine(DelayedRunCoroutine(callback, seconds, showOverlay));
     }
 
-    // Show loading screen until manually hidden
+    // Show loading screen
     public void Show()
     {
         loadingScreen.gameObject.SetActive(true);

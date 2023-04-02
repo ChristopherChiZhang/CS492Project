@@ -27,21 +27,24 @@ public class TaskAppDisplay1 : MonoBehaviour
         });
         nextPage.onClick.AddListener(() =>
         {
-            currentPage++;
-            if (currentPage == 2)
+            FindObjectOfType<LoadingOverlay>().DelayedExecute(() =>
             {
-                page1.SetActive(false);
-                page2.SetActive(true);
-                popup.SetActive(true);
-            }
-            else // third page
-            {
-                page2.SetActive(false);
-                page3.SetActive(true);
-                finish.SetActive(true);
-                nextPage.gameObject.SetActive(false);
-                task.AddScoreAndReason(500, "Read a pawesome story!");
-            }
+                currentPage++;
+                if (currentPage == 2)
+                {
+                    page1.SetActive(false);
+                    page2.SetActive(true);
+                    popup.SetActive(true);
+                }
+                else // third page
+                {
+                    page2.SetActive(false);
+                    page3.SetActive(true);
+                    finish.SetActive(true);
+                    nextPage.gameObject.SetActive(false);
+                    task.AddScoreAndReason(500, "Read a pawesome story!");
+                }
+            });
         });
     }
 }

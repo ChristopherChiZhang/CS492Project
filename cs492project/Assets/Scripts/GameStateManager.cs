@@ -21,6 +21,9 @@ public class GameStateManager : MonoBehaviour
     public TextMeshProUGUI countdownText;
     Color32 lowTime = new Color32(255, 114, 118, 255);
 
+    // If timers (main timer and timer for current task) are counting down
+    bool timersActive = false;
+
     void Start()
     {
         currentTask = null;
@@ -121,23 +124,35 @@ public class GameStateManager : MonoBehaviour
 
     private void Update()
     {
-        if (currentTask != null && currentTask.isTimerOn)
+        if (timersActive)
         {
-            currentTask.duration += Time.deltaTime;
-        }
+            if (currentTask != null && currentTask.isTimerOn)
+            {
+                currentTask.duration += Time.deltaTime;
+            }
 
-        if (countdownCurrent <= 1f)
-        {
-            gameOver = true;
-            UpdateGameOver();
-        }
-        if (countdownCurrent <= 31f)
-        {
-            countdownText.color = lowTime;
-        }
+            if (countdownCurrent <= 1f)
+            {
+                gameOver = true;
+                UpdateGameOver();
+            }
+            if (countdownCurrent <= 31f)
+            {
+                countdownText.color = lowTime;
+            }
 
-        countdownCurrent -= 1 * Time.deltaTime;
-        countdownText.text = string.Format("{0:0} : {1:00}", Mathf.FloorToInt(countdownCurrent / 60), Mathf.FloorToInt(countdownCurrent % 60));
+            countdownCurrent -= 1 * Time.deltaTime;
+            countdownText.text = string.Format("{0:0} : {1:00}", Mathf.FloorToInt(countdownCurrent / 60), Mathf.FloorToInt(countdownCurrent % 60));
+        }
     }
 
+    public void ActivateTimers()
+    {
+        timersActive = true;
+    }
+
+    public void DeactivateTimers()
+    {
+        timersActive = false;
+    }
 }

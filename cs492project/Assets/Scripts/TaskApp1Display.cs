@@ -19,11 +19,13 @@ public class TaskAppDisplay1 : MonoBehaviour
         reject.onClick.AddListener(() =>
         {
             popup.SetActive(false);
+            nextPage.interactable = true;
         });
         accept.onClick.AddListener(() =>
         {
             task.AddScoreAndReason(-300, "Allowed third-party ad-tracking cookies.");
             popup.SetActive(false);
+            nextPage.interactable = true;
         });
         nextPage.onClick.AddListener(() =>
         {
@@ -34,7 +36,13 @@ public class TaskAppDisplay1 : MonoBehaviour
                 {
                     page1.SetActive(false);
                     page2.SetActive(true);
-                    popup.SetActive(true);
+
+                    // Delay popup for a bit (and temporarily disable next button)
+                    nextPage.interactable = false;
+                    FindObjectOfType<LoadingOverlay>().DelayedExecute(() =>
+                    {
+                        popup.SetActive(true);
+                    }, 0.5f, false);
                 }
                 else // third page
                 {

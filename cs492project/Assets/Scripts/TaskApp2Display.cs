@@ -46,8 +46,13 @@ public class TaskApp2Display : MonoBehaviour
 
                 page1.SetActive(false);
                 page2.SetActive(true);
-                page2PopupLoc.SetActive(true);
                 currentPage++;
+
+                // Delay popup for a bit
+                FindObjectOfType<LoadingOverlay>().DelayedExecute(() =>
+                {
+                    page2PopupLoc.SetActive(true);
+                }, 0.5f, false);
             });
         });
 
@@ -78,6 +83,7 @@ public class TaskApp2Display : MonoBehaviour
                 page2.SetActive(false);
                 page3.SetActive(true);
                 currentPage++;
+
                 task.AddScoreAndReason(500, "Bought this week’s groceries!");
             });
         });

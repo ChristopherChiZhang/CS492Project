@@ -18,6 +18,6 @@ public class GameStart : MonoBehaviour
         FindObjectOfType<LoadingOverlay>().DelayedExecute(() =>
         {
             startButton.interactable = true;
-        }, 5f, showOverlay: false);
+        }, 3f, showOverlay: false);
     }
 }

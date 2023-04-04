@@ -49,6 +49,7 @@ public class GameStateManager : MonoBehaviour
     {
         currentTask = task;
         Debug.Log("Started task: " + currentTask.name);
+        UpdateTimerLocation(currentTask.timerXPos, currentTask.timerYPos);
         FindObjectOfType<TaskAppIcons>().gameObject.SetActive(false);
         FindObjectOfType<TaskAppDisplays>(true).EnableTask(currentTask);
         FindObjectOfType<ToDoListWindow>().gameObject.SetActive(false);
@@ -62,6 +63,7 @@ public class GameStateManager : MonoBehaviour
         FindObjectOfType<TaskAppDisplays>().DisableAllTasks(); // Disable task from being seen to the user
         FindObjectOfType<ToDoListWindow>(true).gameObject.SetActive(true); // Enable the to do list
         FindObjectOfType<ToDoListWindow>(true).UpdateToDoList(currentTask);
+        UpdateTimerLocation();
         currentTask = null;
     }
 
@@ -117,6 +119,11 @@ public class GameStateManager : MonoBehaviour
             PlayerPrefs.SetString("scoreString" + i, scoreStrings.ElementAt(i));
         }
         SceneManager.LoadScene("GameOverScene");
+    }
+
+    private void UpdateTimerLocation(float x = -6.133334f, float y = -4.044445f)
+    {
+        countdownText.gameObject.transform.position = new Vector3(x, y, 100);
     }
 
     private void Update()

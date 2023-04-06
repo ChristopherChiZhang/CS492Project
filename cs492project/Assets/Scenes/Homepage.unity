@@ -15634,7 +15634,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: To break the heart of the intern who spend all week writing the email that
+  m_text: To break the heart of the intern who spent all week writing the email that
     you hated so much
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5b1936668fb97814589fbece7e2dab00, type: 2}

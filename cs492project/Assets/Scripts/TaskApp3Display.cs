@@ -59,14 +59,6 @@ public class TaskApp3Display : MonoBehaviour
                     newPage = page4;
                 }
                 // Update all buttons on page to not be selected
-                /*oldPage.GetComponentsInChildren<Button>().ToList().ForEach(button =>
-                {
-                    button.GetComponent<Image>().sprite = uiMask;
-                    button.GetComponent<Image>().color = new Color32(0, 0, 0, 255);
-                    string buttonIconName = getButtonIconName(button);
-                    GameObject buttonIcon = oldPage.transform.Find(buttonIconName).gameObject;
-                    buttonIcon.transform.localScale = new Vector3(1f, 1f, 1f);
-                });*/
                 resetButtonIcons(oldPage.GetComponentsInChildren<Button>().ToList(), oldPage, uiMask);
                 selectedMed = null;
                 submit.gameObject.SetActive(false);
@@ -99,14 +91,6 @@ public class TaskApp3Display : MonoBehaviour
                     newPage = page3;
                 }
                 // Update all buttons on page to not be selected
-                /*oldPage.GetComponentsInChildren<Button>().ToList().ForEach(button =>
-                {
-                    button.GetComponent<Image>().sprite = uiMask;
-                    button.GetComponent<Image>().color = new Color32(0, 0, 0, 255);
-                    string buttonIconName = getButtonIconName(button);
-                    GameObject buttonIcon = oldPage.transform.Find(buttonIconName).gameObject;
-                    buttonIcon.transform.localScale = new Vector3(1f, 1f, 1f);
-                });*/
                 resetButtonIcons(oldPage.GetComponentsInChildren<Button>().ToList(), oldPage, uiMask);
                 selectedMed = null;
                 submit.gameObject.SetActive(false);
@@ -150,13 +134,6 @@ public class TaskApp3Display : MonoBehaviour
                 button.onClick.AddListener(() =>
                 {
                     // Update buttons on page to not be selected
-                    /*page.GetComponentsInChildren<Button>().ToList().ForEach(notSelectedButton =>
-                    {
-                        if (notSelectedButton != button)
-                        {
-                            
-                        }
-                    });*/
                     resetButtonIcons(page.GetComponentsInChildren<Button>().ToList(), page, uiMask);
                     // Change sprite of current button to be selected
                     button.GetComponent<Image>().sprite = auraImage;

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -29,11 +30,13 @@ public class TaskApp3Display : MonoBehaviour
 
     void Start()
     {
-        Sprite auraImage = Resources.Load<Sprite>("General/CheckboxUnchecked"); // TODO: Update with aura icon
+        Sprite auraImage = Resources.Load<Sprite>("General/GenericAura");
         Sprite uiMask = page1.GetComponentInChildren<Button>().GetComponent<Image>().sprite; // Save the uiMask to restore later
         LoadingOverlay overLay = FindObjectOfType<LoadingOverlay>();
         nextPage.onClick.AddListener(() =>
         {
+            Sprite loadingImage = Resources.Load<Sprite>("Task3/BigPill");
+            overLay.SetLoadingIconImage(loadingImage); // change loading icon to turnip
             overLay.DelayedExecute(() =>
             {
                 GameObject oldPage = null;
@@ -56,10 +59,15 @@ public class TaskApp3Display : MonoBehaviour
                     newPage = page4;
                 }
                 // Update all buttons on page to not be selected
-                oldPage.GetComponentsInChildren<Button>().ToList().ForEach(button =>
+                /*oldPage.GetComponentsInChildren<Button>().ToList().ForEach(button =>
                 {
                     button.GetComponent<Image>().sprite = uiMask;
-                });
+                    button.GetComponent<Image>().color = new Color32(0, 0, 0, 255);
+                    string buttonIconName = getButtonIconName(button);
+                    GameObject buttonIcon = oldPage.transform.Find(buttonIconName).gameObject;
+                    buttonIcon.transform.localScale = new Vector3(1f, 1f, 1f);
+                });*/
+                resetButtonIcons(oldPage.GetComponentsInChildren<Button>().ToList(), oldPage, uiMask);
                 selectedMed = null;
                 submit.gameObject.SetActive(false);
                 oldPage.SetActive(false);
@@ -91,10 +99,15 @@ public class TaskApp3Display : MonoBehaviour
                     newPage = page3;
                 }
                 // Update all buttons on page to not be selected
-                oldPage.GetComponentsInChildren<Button>().ToList().ForEach(button =>
+                /*oldPage.GetComponentsInChildren<Button>().ToList().ForEach(button =>
                 {
                     button.GetComponent<Image>().sprite = uiMask;
-                });
+                    button.GetComponent<Image>().color = new Color32(0, 0, 0, 255);
+                    string buttonIconName = getButtonIconName(button);
+                    GameObject buttonIcon = oldPage.transform.Find(buttonIconName).gameObject;
+                    buttonIcon.transform.localScale = new Vector3(1f, 1f, 1f);
+                });*/
+                resetButtonIcons(oldPage.GetComponentsInChildren<Button>().ToList(), oldPage, uiMask);
                 selectedMed = null;
                 submit.gameObject.SetActive(false);
                 oldPage.SetActive(false);
@@ -118,6 +131,7 @@ public class TaskApp3Display : MonoBehaviour
             if (selectedMed.name.StartsWith("CorrectButton"))
             {
                 task.AddScoreAndReason(500, "Retrieved your prescription!");
+                overLay.SetLoadingIconImage(); // Change loading icon back to default
                 FindObjectOfType<GameStateManager>().BackToHomeScreen();
             }
             else
@@ -136,28 +150,22 @@ public class TaskApp3Display : MonoBehaviour
                 button.onClick.AddListener(() =>
                 {
                     // Update buttons on page to not be selected
-                    page.GetComponentsInChildren<Button>().ToList().ForEach(notSelectedButton =>
+                    /*page.GetComponentsInChildren<Button>().ToList().ForEach(notSelectedButton =>
                     {
                         if (notSelectedButton != button)
                         {
-                            notSelectedButton.GetComponent<Image>().sprite = uiMask;
+                            
                         }
-                    });
+                    });*/
+                    resetButtonIcons(page.GetComponentsInChildren<Button>().ToList(), page, uiMask);
                     // Change sprite of current button to be selected
                     button.GetComponent<Image>().sprite = auraImage;
+                    button.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
                     selectedMed = button;
                     submit.gameObject.SetActive(true);
                 });
 
-                string buttonIconName = "";
-                if (button.name.StartsWith("CorrectButton"))
-                {
-                    buttonIconName = "CorrectButtonIcon" + button.name.Last();
-                }
-                else
-                {
-                    buttonIconName = "ButtonIcon" + button.gameObject.name.Last();
-                }
+                string buttonIconName = getButtonIconName(button);
                 GameObject buttonIcon = page.transform.Find(buttonIconName).gameObject;
                 EventTrigger trigger = button.GetComponent<EventTrigger>();
                 EventTrigger.Entry enterEntry = new EventTrigger.Entry();
@@ -170,12 +178,43 @@ public class TaskApp3Display : MonoBehaviour
                 exitEntry.eventID = EventTriggerType.PointerExit;
                 exitEntry.callback.AddListener((eventData) =>
                 {
-                    buttonIcon.transform.localScale = new Vector3(1f, 1f, 1f);
+                    if (selectedMed == null)
+                    {
+                        buttonIcon.transform.localScale = new Vector3(1f, 1f, 1f);
+                    }
+                    else if (buttonIcon.name.Last() != selectedMed.name.Last())
+                    {
+                        buttonIcon.transform.localScale = new Vector3(1f, 1f, 1f);
+                    }
                 });
                 trigger.triggers.Add(enterEntry);
                 trigger.triggers.Add(exitEntry);
             });
         });
+    }
+
+    void resetButtonIcons(List<Button> buttons, GameObject page, Sprite uiMask)
+    {
+        buttons.ForEach(button =>
+        {
+            button.GetComponent<Image>().sprite = uiMask;
+            button.GetComponent<Image>().color = new Color32(0, 0, 0, 255);
+            string buttonIconName = getButtonIconName(button);
+            GameObject buttonIcon = page.transform.Find(buttonIconName).gameObject;
+            buttonIcon.transform.localScale = new Vector3(1f, 1f, 1f);
+        });
+    }
+
+    string getButtonIconName(Button button)
+    {
+        if (button.name.StartsWith("CorrectButton"))
+        {
+            return "CorrectButtonIcon" + button.name.Last();
+        }
+        else
+        {
+            return "ButtonIcon" + button.gameObject.name.Last();
+        }
     }
 
     void Update()

@@ -15,7 +15,12 @@ public class TaskApp3Display : MonoBehaviour
 
     public GameObject quickPage;
 
+    public GameObject smartwatchPopup;
+
     int currentPage = 1;
+    float duration = 5f;
+    float currentTime = 0f;
+    Vector3 endPosition = new Vector3(-6.8f, 1.201778f, 100f);
 
     void Start()
     {
@@ -68,5 +73,19 @@ public class TaskApp3Display : MonoBehaviour
                 currentPage--;
             });
         });
+    }
+
+    void Update()
+    {
+        if (currentTime != duration)
+        {
+            currentTime += Time.deltaTime;
+            if (currentTime > duration)
+            {
+                currentTime = duration;
+            }
+            float percent = currentTime / duration;
+            smartwatchPopup.transform.position = Vector3.Lerp(smartwatchPopup.transform.position, endPosition, percent);
+        }
     }
 }

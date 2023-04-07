@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class TaskApp3Display : MonoBehaviour
@@ -26,7 +27,7 @@ public class TaskApp3Display : MonoBehaviour
     void Start()
     {
         Sprite auraImage = Resources.Load<Sprite>("General/CheckboxUnchecked"); // TODO: Update with aura icon
-        Sprite uiMask = Resources.Load<Sprite>("unity_builtin_extra/UIMask.psd");
+        Sprite uiMask = page1.GetComponentInChildren<Button>().GetComponent<Image>().sprite; // Save the uiMask to restore later
         LoadingOverlay overLay = FindObjectOfType<LoadingOverlay>();
         nextPage.onClick.AddListener(() =>
         {
@@ -125,6 +126,32 @@ public class TaskApp3Display : MonoBehaviour
                     // Change sprite of current button to be selected
                     button.GetComponent<Image>().sprite = auraImage;
                 });
+
+                string buttonIconName = "";
+                if (button.name.StartsWith("CorrectButton"))
+                {
+                    buttonIconName = "CorrectButtonIcon" + button.name.Last();
+                }
+                else
+                {
+                    buttonIconName = "ButtonIcon" + button.gameObject.name.Last();
+                }
+                GameObject buttonIcon = page.transform.Find(buttonIconName).gameObject;
+                EventTrigger trigger = button.GetComponent<EventTrigger>();
+                EventTrigger.Entry enterEntry = new EventTrigger.Entry();
+                enterEntry.eventID = EventTriggerType.PointerEnter;
+                enterEntry.callback.AddListener((eventData) =>
+                {
+                    buttonIcon.transform.localScale = new Vector3(1.1f, 1.1f, 0f);
+                });
+                EventTrigger.Entry exitEntry = new EventTrigger.Entry();
+                exitEntry.eventID = EventTriggerType.PointerExit;
+                exitEntry.callback.AddListener((eventData) =>
+                {
+                    buttonIcon.transform.localScale = new Vector3(1f, 1f, 1f);
+                });
+                trigger.triggers.Add(enterEntry);
+                trigger.triggers.Add(exitEntry);
             });
         });
     }

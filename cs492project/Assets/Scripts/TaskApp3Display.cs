@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,12 +8,12 @@ public class TaskApp3Display : MonoBehaviour
 
     public Button nextPage;
     public Button prevPage;
+    public Button accept;
 
     public GameObject page1;
     public GameObject page2;
     public GameObject page3;
     public GameObject page4;
-
     public GameObject quickPage;
 
     public GameObject smartwatchPopup;
@@ -71,6 +72,30 @@ public class TaskApp3Display : MonoBehaviour
                     page3.SetActive(true);
                 }
                 currentPage--;
+            });
+        });
+        accept.onClick.AddListener(() =>
+        {
+            overLay.DelayedExecute(() =>
+            {
+                nextPage.interactable = false;
+                prevPage.interactable = false;
+                smartwatchPopup.SetActive(false);
+                quickPage.SetActive(true);
+            });
+        });
+
+        // Add listeners to each button on the pages
+        //Sprite auraImage = Resources.Load<Sprite>("General/ButtonSelectedAura");
+        GameObject[] pages = { page1, page2, page3, page4, quickPage };
+        pages.ToList().ForEach(page =>
+        {
+            page.GetComponentsInChildren<Button>().ToList().ForEach(button =>
+            {
+                button.onClick.AddListener(() =>
+                {
+                    //button.GetComponent<Image>().sprite = auraImage;
+                });
             });
         });
     }

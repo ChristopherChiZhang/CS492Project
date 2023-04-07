@@ -25,28 +25,39 @@ public class TaskApp3Display : MonoBehaviour
 
     void Start()
     {
+        Sprite auraImage = Resources.Load<Sprite>("General/CheckboxUnchecked"); // TODO: Update with aura icon
+        Sprite uiMask = Resources.Load<Sprite>("unity_builtin_extra/UIMask.psd");
         LoadingOverlay overLay = FindObjectOfType<LoadingOverlay>();
         nextPage.onClick.AddListener(() =>
         {
             overLay.DelayedExecute(() =>
             {
+                GameObject activePage = null;
                 if (currentPage == 1)
                 {
                     prevPage.interactable = true;
                     page1.SetActive(false);
                     page2.SetActive(true);
+                    activePage = page2;
                 }
                 else if (currentPage == 2)
                 {
                     page2.SetActive(false);
                     page3.SetActive(true);
+                    activePage = page3;
                 }
                 else if (currentPage == 3)
                 {
                     nextPage.interactable = false;
                     page3.SetActive(false);
                     page4.SetActive(true);
+                    activePage = page4;
                 }
+                // Update all buttons on page to not be selected
+                activePage.GetComponentsInChildren<Button>().ToList().ForEach(button =>
+                {
+                    button.GetComponent<Image>().sprite = uiMask;
+                });
                 currentPage++;
             });
         });
@@ -54,23 +65,32 @@ public class TaskApp3Display : MonoBehaviour
         {
             overLay.DelayedExecute(() =>
             {
+                GameObject activePage = null;
                 if (currentPage == 2)
                 {
                     prevPage.interactable = false;
                     page2.SetActive(false);
                     page1.SetActive(true);
+                    activePage = page1;
                 }
                 else if (currentPage == 3)
                 {
                     page3.SetActive(false);
                     page2.SetActive(true);
+                    activePage = page2;
                 }
                 else if (currentPage == 4)
                 {
                     nextPage.interactable = true;
                     page4.SetActive(false);
                     page3.SetActive(true);
+                    activePage = page3;
                 }
+                // Update all buttons on page to not be selected
+                activePage.GetComponentsInChildren<Button>().ToList().ForEach(button =>
+                {
+                    button.GetComponent<Image>().sprite = uiMask;
+                });
                 currentPage--;
             });
         });
@@ -86,15 +106,24 @@ public class TaskApp3Display : MonoBehaviour
         });
 
         // Add listeners to each button on the pages
-        //Sprite auraImage = Resources.Load<Sprite>("General/ButtonSelectedAura");
         GameObject[] pages = { page1, page2, page3, page4, quickPage };
         pages.ToList().ForEach(page =>
         {
+            // Add selected sprite listeners
             page.GetComponentsInChildren<Button>().ToList().ForEach(button =>
             {
                 button.onClick.AddListener(() =>
                 {
-                    //button.GetComponent<Image>().sprite = auraImage;
+                    // Update buttons on page to not be selected
+                    page.GetComponentsInChildren<Button>().ToList().ForEach(notSelectedButton =>
+                    {
+                        if (notSelectedButton != button)
+                        {
+                            notSelectedButton.GetComponent<Image>().sprite = uiMask;
+                        }
+                    });
+                    // Change sprite of current button to be selected
+                    button.GetComponent<Image>().sprite = auraImage;
                 });
             });
         });

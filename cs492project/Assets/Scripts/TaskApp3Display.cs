@@ -10,6 +10,7 @@ public class TaskApp3Display : MonoBehaviour
     public Button nextPage;
     public Button prevPage;
     public Button accept;
+    public Button submit;
 
     public GameObject page1;
     public GameObject page2;
@@ -24,6 +25,8 @@ public class TaskApp3Display : MonoBehaviour
     float currentTime = 0f;
     Vector3 endPosition = new Vector3(-6.8f, 1.201778f, 100f);
 
+    Button selectedMed = null;
+
     void Start()
     {
         Sprite auraImage = Resources.Load<Sprite>("General/CheckboxUnchecked"); // TODO: Update with aura icon
@@ -33,32 +36,34 @@ public class TaskApp3Display : MonoBehaviour
         {
             overLay.DelayedExecute(() =>
             {
-                GameObject activePage = null;
+                GameObject oldPage = null;
+                GameObject newPage = null;
                 if (currentPage == 1)
                 {
                     prevPage.interactable = true;
-                    page1.SetActive(false);
-                    page2.SetActive(true);
-                    activePage = page2;
+                    oldPage = page1;
+                    newPage = page2;
                 }
                 else if (currentPage == 2)
                 {
-                    page2.SetActive(false);
-                    page3.SetActive(true);
-                    activePage = page3;
+                    oldPage = page2;
+                    newPage = page3;
                 }
                 else if (currentPage == 3)
                 {
                     nextPage.interactable = false;
-                    page3.SetActive(false);
-                    page4.SetActive(true);
-                    activePage = page4;
+                    oldPage = page3;
+                    newPage = page4;
                 }
                 // Update all buttons on page to not be selected
-                activePage.GetComponentsInChildren<Button>().ToList().ForEach(button =>
+                oldPage.GetComponentsInChildren<Button>().ToList().ForEach(button =>
                 {
                     button.GetComponent<Image>().sprite = uiMask;
                 });
+                selectedMed = null;
+                submit.gameObject.SetActive(false);
+                oldPage.SetActive(false);
+                newPage.SetActive(true);
                 currentPage++;
             });
         });
@@ -66,32 +71,34 @@ public class TaskApp3Display : MonoBehaviour
         {
             overLay.DelayedExecute(() =>
             {
-                GameObject activePage = null;
+                GameObject oldPage = null;
+                GameObject newPage = null;
                 if (currentPage == 2)
                 {
                     prevPage.interactable = false;
-                    page2.SetActive(false);
-                    page1.SetActive(true);
-                    activePage = page1;
+                    oldPage = page2;
+                    newPage = page1;
                 }
                 else if (currentPage == 3)
                 {
-                    page3.SetActive(false);
-                    page2.SetActive(true);
-                    activePage = page2;
+                    oldPage = page3;
+                    newPage = page2;
                 }
                 else if (currentPage == 4)
                 {
                     nextPage.interactable = true;
-                    page4.SetActive(false);
-                    page3.SetActive(true);
-                    activePage = page3;
+                    oldPage = page4;
+                    newPage = page3;
                 }
                 // Update all buttons on page to not be selected
-                activePage.GetComponentsInChildren<Button>().ToList().ForEach(button =>
+                oldPage.GetComponentsInChildren<Button>().ToList().ForEach(button =>
                 {
                     button.GetComponent<Image>().sprite = uiMask;
                 });
+                selectedMed = null;
+                submit.gameObject.SetActive(false);
+                oldPage.SetActive(false);
+                newPage.SetActive(true);
                 currentPage--;
             });
         });
@@ -104,6 +111,19 @@ public class TaskApp3Display : MonoBehaviour
                 smartwatchPopup.SetActive(false);
                 quickPage.SetActive(true);
             });
+            task.AddScoreAndReason(-250, "Shared sensitive health data.");
+        });
+        submit.onClick.AddListener(() =>
+        {
+            if (selectedMed.name.StartsWith("CorrectButton"))
+            {
+                task.AddScoreAndReason(500, "Retrieved your prescription!");
+                FindObjectOfType<GameStateManager>().BackToHomeScreen();
+            }
+            else
+            {
+
+            }
         });
 
         // Add listeners to each button on the pages
@@ -125,6 +145,8 @@ public class TaskApp3Display : MonoBehaviour
                     });
                     // Change sprite of current button to be selected
                     button.GetComponent<Image>().sprite = auraImage;
+                    selectedMed = button;
+                    submit.gameObject.SetActive(true);
                 });
 
                 string buttonIconName = "";

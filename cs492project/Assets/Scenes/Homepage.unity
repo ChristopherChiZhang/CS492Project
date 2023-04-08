@@ -5653,7 +5653,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.26000977, y: -21.419037}
+  m_AnchoredPosition: {x: 0.26000977, y: -21.419006}
   m_SizeDelta: {x: -23.47, y: -69.184}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &281755754
@@ -28284,7 +28284,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '* Task 3 summary'
+  m_text: '* Refill prescription (Pentaoximalbutinol)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5b1936668fb97814589fbece7e2dab00, type: 2}
   m_sharedMaterial: {fileID: -3116525095460179669, guid: 5b1936668fb97814589fbece7e2dab00, type: 2}
@@ -31096,7 +31096,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -269.4, y: 147.7}
+  m_AnchoredPosition: {x: -261.3, y: 152.5}
   m_SizeDelta: {x: 170.2, y: 36.85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1809367121

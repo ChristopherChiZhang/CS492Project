@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -20,6 +21,9 @@ public class TaskApp3Display : MonoBehaviour
     public GameObject quickPage;
 
     public GameObject smartwatchPopup;
+
+    public CanvasGroup errorMessage;
+    bool errorMessageOn = false;
 
     int currentPage = 1;
     float duration = 5f;
@@ -59,7 +63,7 @@ public class TaskApp3Display : MonoBehaviour
                     newPage = page4;
                 }
                 // Update all buttons on page to not be selected
-                resetButtonIcons(oldPage.GetComponentsInChildren<Button>().ToList(), oldPage, uiMask);
+                ResetButtonIcons(oldPage.GetComponentsInChildren<Button>().ToList(), oldPage, uiMask);
                 selectedMed = null;
                 submit.gameObject.SetActive(false);
                 oldPage.SetActive(false);
@@ -91,7 +95,7 @@ public class TaskApp3Display : MonoBehaviour
                     newPage = page3;
                 }
                 // Update all buttons on page to not be selected
-                resetButtonIcons(oldPage.GetComponentsInChildren<Button>().ToList(), oldPage, uiMask);
+                ResetButtonIcons(oldPage.GetComponentsInChildren<Button>().ToList(), oldPage, uiMask);
                 selectedMed = null;
                 submit.gameObject.SetActive(false);
                 oldPage.SetActive(false);
@@ -120,7 +124,12 @@ public class TaskApp3Display : MonoBehaviour
             }
             else
             {
-
+                if (!errorMessageOn)
+                {
+                    errorMessageOn = true;
+                    errorMessage.gameObject.SetActive(true);
+                    FadeErrorMessageOut();
+                }
             }
         });
 
@@ -134,7 +143,7 @@ public class TaskApp3Display : MonoBehaviour
                 button.onClick.AddListener(() =>
                 {
                     // Update buttons on page to not be selected
-                    resetButtonIcons(page.GetComponentsInChildren<Button>().ToList(), page, uiMask);
+                    ResetButtonIcons(page.GetComponentsInChildren<Button>().ToList(), page, uiMask);
                     // Change sprite of current button to be selected
                     button.GetComponent<Image>().sprite = auraImage;
                     button.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
@@ -142,7 +151,7 @@ public class TaskApp3Display : MonoBehaviour
                     submit.gameObject.SetActive(true);
                 });
 
-                string buttonIconName = getButtonIconName(button);
+                string buttonIconName = GetButtonIconName(button);
                 GameObject buttonIcon = page.transform.Find(buttonIconName).gameObject;
                 EventTrigger trigger = button.GetComponent<EventTrigger>();
                 EventTrigger.Entry enterEntry = new EventTrigger.Entry();
@@ -170,19 +179,19 @@ public class TaskApp3Display : MonoBehaviour
         });
     }
 
-    void resetButtonIcons(List<Button> buttons, GameObject page, Sprite uiMask)
+    void ResetButtonIcons(List<Button> buttons, GameObject page, Sprite uiMask)
     {
         buttons.ForEach(button =>
         {
             button.GetComponent<Image>().sprite = uiMask;
             button.GetComponent<Image>().color = new Color32(0, 0, 0, 255);
-            string buttonIconName = getButtonIconName(button);
+            string buttonIconName = GetButtonIconName(button);
             GameObject buttonIcon = page.transform.Find(buttonIconName).gameObject;
             buttonIcon.transform.localScale = new Vector3(1f, 1f, 1f);
         });
     }
 
-    string getButtonIconName(Button button)
+    string GetButtonIconName(Button button)
     {
         if (button.name.StartsWith("CorrectButton"))
         {
@@ -194,6 +203,39 @@ public class TaskApp3Display : MonoBehaviour
         }
     }
 
+    void FadeErrorMessageOut()
+    {
+        StartCoroutine(FadeCanvasGroup(errorMessage, errorMessage.alpha, 0));
+    }
+
+    public IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float duration = 1f)
+    {
+        yield return new WaitForSeconds(2); // Delay the routine by 1 second
+
+        float startTime = Time.time;
+        float timeSinceStart;
+        float percentComplete;
+
+        while (true)
+        {
+            timeSinceStart = Time.time - startTime;
+            percentComplete = timeSinceStart / duration;
+
+            cg.alpha = Mathf.Lerp(start, end, percentComplete);
+
+            if (percentComplete >= 1)
+            {
+                break;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+        // Reset the error message for the next time
+        errorMessage.gameObject.SetActive(false);
+        errorMessage.alpha = 1;
+        errorMessageOn = false;
+    }
+
+    // Controls the animation of the "smartwatch detected" popup
     void Update()
     {
         if (currentTime != duration)

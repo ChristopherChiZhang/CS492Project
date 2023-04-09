@@ -24,7 +24,7 @@ public class TaskApp5Display : MonoBehaviour
     public TextMeshProUGUI page3Password1;
     public TextMeshProUGUI page3Password2;
 
-    public TextMeshProUGUI page4Input;
+    public TMP_InputField page4Input;
     public GameObject page4Error;
 
     public Toggle page5Toggle1;
@@ -79,8 +79,6 @@ public class TaskApp5Display : MonoBehaviour
             {
                 page3.SetActive(false);
                 page4.SetActive(true);
-                currInput = null;  // Deselect page 3 input
-                Keyboard.current.onTextInput += OnPage4TextInput;  // Enable page 4 input listener
                 currentPage++;
             });
         });
@@ -92,11 +90,10 @@ public class TaskApp5Display : MonoBehaviour
             overlay.DelayedExecute(() =>
             {
                 // Check captcha
-                if (page4Input.text.TrimEnd('|') == captcha)
+                if (page4Input.text == captcha)
                 {
                     page4.SetActive(false);
                     page5.SetActive(true);
-                    Keyboard.current.onTextInput -= OnPage4TextInput;  // Disable page 4 input listener
                     currentPage++;
                 } else
                 {
@@ -188,20 +185,6 @@ public class TaskApp5Display : MonoBehaviour
         page3Password1.text = page3Password1.text.TrimEnd('|');
     }
 
-    public void OnPage4InputClick()
-    {
-        currInput = page4Input;
-    }
-
-    private void OnPage4TextInput(char c)
-    {
-        if (currInput != null)
-        {
-            currInput.text = currInput.text.TrimEnd('|');
-            currInput.text += c;
-        }
-    }
-
     void Update()
     {
         t += Time.deltaTime;
@@ -240,34 +223,6 @@ public class TaskApp5Display : MonoBehaviour
                             currInput.text += target[currInput.text.Length];
                         }
                         page3Next.interactable = page3Username.text.TrimEnd('|').Length == username.Length && page3Password1.text.TrimEnd('|').Length == password.Length && page3Password2.text.TrimEnd('|').Length == password.Length;
-                    }
-                }
-            }
-
-            // Page 4 input
-            else if (currentPage == 4)
-            {
-                // Input cursor blinking effect
-                if (t >= 0.5f)
-                {
-                    t = 0f;
-                    if (currInput.text.EndsWith("|"))
-                    {
-                        currInput.text = currInput.text.TrimEnd('|');
-                    }
-                    else
-                    {
-                        currInput.text += '|';
-                    }
-                }
-
-                // Backspace input
-                if (Input.GetKeyDown(KeyCode.Backspace))
-                {
-                    if (currInput != null)
-                    {
-                        currInput.text = currInput.text.TrimEnd('|');
-                        currInput.text = currInput.text.Remove(currInput.text.Length - 1);
                     }
                 }
             }

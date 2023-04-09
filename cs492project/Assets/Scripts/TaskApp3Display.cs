@@ -28,7 +28,7 @@ public class TaskApp3Display : MonoBehaviour
     int currentPage = 1;
     float duration = 5f;
     float currentTime = 0f;
-    Vector3 endPosition = new Vector3(-6.8f, 1.201778f, 100f);
+    Vector3 endPosition = new Vector3(-6f, 1.201778f, 100f);
 
     Button selectedMed = null;
 
@@ -112,7 +112,7 @@ public class TaskApp3Display : MonoBehaviour
                 smartwatchPopup.SetActive(false);
                 quickPage.SetActive(true);
             });
-            task.AddScoreAndReason(-250, "Prescription: Shared sensitive health data.");
+            task.AddScoreAndReason(-300, "Prescription: Shared sensitive health data.");
         });
         submit.onClick.AddListener(() =>
         {
@@ -152,7 +152,7 @@ public class TaskApp3Display : MonoBehaviour
                 });
 
                 string buttonIconName = GetButtonIconName(button);
-                GameObject buttonIcon = page.transform.Find(buttonIconName).gameObject;
+                GameObject buttonIcon = page.transform.Find("Medications").gameObject.transform.Find(buttonIconName).gameObject;
                 EventTrigger trigger = button.GetComponent<EventTrigger>();
                 EventTrigger.Entry enterEntry = new EventTrigger.Entry();
                 enterEntry.eventID = EventTriggerType.PointerEnter;
@@ -186,7 +186,7 @@ public class TaskApp3Display : MonoBehaviour
             button.GetComponent<Image>().sprite = uiMask;
             button.GetComponent<Image>().color = new Color32(0, 0, 0, 255);
             string buttonIconName = GetButtonIconName(button);
-            GameObject buttonIcon = page.transform.Find(buttonIconName).gameObject;
+            GameObject buttonIcon = page.transform.Find("Medications").gameObject.transform.Find(buttonIconName).gameObject;
             buttonIcon.transform.localScale = new Vector3(1f, 1f, 1f);
         });
     }

@@ -92,7 +92,7 @@ public class TaskApp5Display : MonoBehaviour
             overlay.DelayedExecute(() =>
             {
                 // Check captcha
-                if (page4Input.text == captcha)
+                if (page4Input.text.TrimEnd('|') == captcha)
                 {
                     page4.SetActive(false);
                     page5.SetActive(true);

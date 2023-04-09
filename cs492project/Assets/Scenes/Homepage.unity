@@ -29524,7 +29524,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Aww man, my bus is arriving in\n<color=\"red\"><size=125%>FIVE MINUTES!</size></color>\nI
+  m_text: "Aww man, my bus is arriving in\n<color=\"red\"><size=125%>TWO MINUTES!</size></color>\nI
     better get as many of these\ntasks done before I gotta run\nsince there\u2019s
     no way I\u2019ll\nremember to do them tonight\u2026"
   m_isRightToLeft: 0
@@ -31851,7 +31851,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "aaa\u200B"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5b1936668fb97814589fbece7e2dab00, type: 2}
   m_sharedMaterial: {fileID: -3116525095460179669, guid: 5b1936668fb97814589fbece7e2dab00, type: 2}
@@ -44391,7 +44391,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '5 : 00'
+  m_text: '2 : 00'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5b1936668fb97814589fbece7e2dab00, type: 2}
   m_sharedMaterial: {fileID: -3116525095460179669, guid: 5b1936668fb97814589fbece7e2dab00, type: 2}

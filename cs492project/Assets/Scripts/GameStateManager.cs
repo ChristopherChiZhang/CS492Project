@@ -17,7 +17,7 @@ public class GameStateManager : MonoBehaviour
 
     // Game countdown timer
     float countdownCurrent = 0f;
-    float countdownStarting = 300f;
+    float countdownStarting = 120f;
     public TextMeshProUGUI countdownText;
     Color32 lowTime = new Color32(255, 114, 118, 255);
 

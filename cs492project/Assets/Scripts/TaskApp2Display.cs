@@ -45,7 +45,7 @@ public class TaskApp2Display : MonoBehaviour
                 // Check toggle
                 if (page1ShareData.isOn)
                 {
-                    task.AddScoreAndReason(-150, "Groceries: Shared shopping habits.");
+                    task.AddScoreAndReason(-200, "Task 2: Shared shopping habits.");
                 }
 
                 page1.SetActive(false);
@@ -72,7 +72,7 @@ public class TaskApp2Display : MonoBehaviour
             page2PopupLoc.SetActive(false);
             overLay.DelayedExecute(() =>
             {
-                task.AddScoreAndReason(-150, "Groceries: Shared location data.");
+                task.AddScoreAndReason(-200, "Task 2: Shared location data.");
                 // Autofill address and enable going to page 3
                 page2AddressInput.text = address;
                 page2Confirm.interactable = true;
@@ -87,7 +87,7 @@ public class TaskApp2Display : MonoBehaviour
                 page2.SetActive(false);
                 page3.SetActive(true);
                 currentPage++;
-                task.AddScoreAndReason(500, "Bought this week’s groceries!");
+                task.AddScoreAndReason(500, "Task 2: Bought this week’s groceries!");
                 overLay.SetLoadingIconImage(); // Change loading icon back to default
             });
         });

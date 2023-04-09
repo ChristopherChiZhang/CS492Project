@@ -63,7 +63,7 @@ public class GameStateManager : MonoBehaviour
     {
         tasks[currentTask] = true; // Mark completed
         currentTask.TurnTimerOff(); // Stop timer
-        currentTask.AddScoreAndReason(currentTask.GetTimeScore(), "Completed a task in " + (int)System.Math.Round(currentTask.duration) + " seconds.");
+        currentTask.AddScoreAndReason(currentTask.GetTimeScore(), "Task " + currentTask.name[7] + ": Completed in " + (int)System.Math.Round(currentTask.duration) + " seconds.");
         UpdateGameOver(); // Set gameOver if true
     }
 
@@ -83,8 +83,7 @@ public class GameStateManager : MonoBehaviour
 
     public void GameOver()
     {
-        List<int> scoreNums = new List<int>();
-        List<string> scoreStrings = new List<string>();
+        List<KeyValuePair<int, string>> scores = new List<KeyValuePair<int, string>>();
         int totalScores = 0;
 
 
@@ -96,17 +95,18 @@ public class GameStateManager : MonoBehaviour
             for (int i = 0; i < itemKey.Count; i++)
             {
                 var scoreItem = itemKey.ElementAt(i);
-                scoreNums.Add(scoreItem.Item1);
-                scoreStrings.Add(scoreItem.Item2);
+                scores.Add(new KeyValuePair<int, string>(scoreItem.Item1, scoreItem.Item2));
                 totalScores++;
             }
         }
 
+        scores.Sort((a, b) => a.Value.CompareTo(b.Value));
+
         PlayerPrefs.SetInt("totalScores", totalScores);
         for (int i = 0; i < totalScores; i++)
         {
-            PlayerPrefs.SetInt("scoreNum" + i, scoreNums.ElementAt(i));
-            PlayerPrefs.SetString("scoreString" + i, scoreStrings.ElementAt(i));
+            PlayerPrefs.SetInt("scoreNum" + i, scores.ElementAt(i).Key);
+            PlayerPrefs.SetString("scoreString" + i, scores.ElementAt(i).Value);
         }
         SceneManager.LoadScene("GameOverScene");
     }

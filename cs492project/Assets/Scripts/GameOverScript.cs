@@ -52,7 +52,7 @@ public class GameOverScript : MonoBehaviour
             string scoreString = PlayerPrefs.GetString("scoreString" + i);
             totalScore += scoreNum;
 
-            if (scoreNum > 0)
+            if (scoreNum >= 0)
             {
                 scoreTextPos += "<color=green>" + scoreNum + "</color> " + scoreString + Environment.NewLine;
             }

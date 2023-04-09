@@ -23,7 +23,7 @@ public class TaskAppDisplay1 : MonoBehaviour
         });
         accept.onClick.AddListener(() =>
         {
-            task.AddScoreAndReason(-300, "News: Allowed third-party ad-tracking cookies.");
+            task.AddScoreAndReason(-400, "Task 1: Allowed third-party ad-tracking cookies.");
             popup.SetActive(false);
             nextPage.interactable = true;
         });
@@ -50,7 +50,7 @@ public class TaskAppDisplay1 : MonoBehaviour
                     page3.SetActive(true);
                     finish.SetActive(true);
                     nextPage.gameObject.SetActive(false);
-                    task.AddScoreAndReason(500, "Read a pawesome story!");
+                    task.AddScoreAndReason(500, "Task 1: Read a pawesome story!");
                 }
             });
         });

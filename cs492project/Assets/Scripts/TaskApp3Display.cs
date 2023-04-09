@@ -112,13 +112,13 @@ public class TaskApp3Display : MonoBehaviour
                 smartwatchPopup.SetActive(false);
                 quickPage.SetActive(true);
             });
-            task.AddScoreAndReason(-300, "Prescription: Shared sensitive health data.");
+            task.AddScoreAndReason(-400, "Task 3: Shared sensitive health data.");
         });
         submit.onClick.AddListener(() =>
         {
             if (selectedMed.name.StartsWith("CorrectButton"))
             {
-                task.AddScoreAndReason(500, "Retrieved your prescription!");
+                task.AddScoreAndReason(500, "Task 3: Retrieved your prescription!");
                 overLay.SetLoadingIconImage(); // Change loading icon back to default
                 FindObjectOfType<GameStateManager>().BackToHomeScreen();
             }

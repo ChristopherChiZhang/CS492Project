@@ -116,35 +116,35 @@ public class TaskApp5Display : MonoBehaviour
                 // Read checkboxes
                 if (page5Toggle1.isOn)
                 {
-                    task.AddScoreAndReason(-50, "Social Media: Shared app data.");
+                    task.AddScoreAndReason(-60, "Task 5: Shared app data.");
                 }
                 if (!page5Toggle2.isOn)
                 {
-                    task.AddScoreAndReason(-50, "Social Media: Shared location data.");
+                    task.AddScoreAndReason(-60, "Task 5: Shared location data.");
                 }
                 if (page5Toggle3.isOn)
                 {
-                    task.AddScoreAndReason(-50, "Social Media: Subscribed to monthly newsletter.");
+                    task.AddScoreAndReason(-60, "Task 5: Subscribed to monthly newsletter.");
                 }
 
                 if (!page5Toggle4.isOn)
                 {
-                    task.AddScoreAndReason(-50, "Social Media: Subscribed to weekly newsletter.");
+                    task.AddScoreAndReason(-60, "Task 5: Subscribed to weekly newsletter.");
                 }
                 if (!page5Toggle5.isOn)
                 {
-                    task.AddScoreAndReason(-50, "Social Media: Subscribed to daily newsletter.");
+                    task.AddScoreAndReason(-60, "Task 5: Subscribed to daily newsletter.");
                 }
                 if (page5Toggle6.isOn || page5Toggle7.isOn)
                 {
-                    task.AddScoreAndReason(-50, "Social Media: Allowed camera access.");
+                    task.AddScoreAndReason(-60, "Task 5: Allowed camera access.");
                 }
                 if (page5Toggle8.isOn)
                 {
-                    task.AddScoreAndReason(-50, "Social Media: Shared data to personalize ads.");
+                    task.AddScoreAndReason(-60, "Task 5: Shared data to personalize ads.");
                 }
 
-                task.AddScoreAndReason(500, "Signed up for Honkr!");
+                task.AddScoreAndReason(500, "Task 5: Signed up for Honkr!");
             });
         });
 

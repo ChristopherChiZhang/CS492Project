@@ -18361,11 +18361,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2896484293145391147, guid: aa498a5d732044a4e974e4691e1b8ce3, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 80
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2896484293145391147, guid: aa498a5d732044a4e974e4691e1b8ce3, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 80
+      value: 99
       objectReference: {fileID: 0}
     - target: {fileID: 2896484293145391147, guid: aa498a5d732044a4e974e4691e1b8ce3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18397,11 +18397,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2896484293145391147, guid: aa498a5d732044a4e974e4691e1b8ce3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 127
+      value: 123.99998
       objectReference: {fileID: 0}
     - target: {fileID: 2896484293145391147, guid: aa498a5d732044a4e974e4691e1b8ce3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -87
+      value: -82
       objectReference: {fileID: 0}
     - target: {fileID: 2896484293145391147, guid: aa498a5d732044a4e974e4691e1b8ce3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -18543,6 +18543,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7803428643352347413, guid: aa498a5d732044a4e974e4691e1b8ce3, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7803428643352347413, guid: aa498a5d732044a4e974e4691e1b8ce3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e03f744656fb9d3499fd93c447ca5091, type: 3}
     - target: {fileID: 8795653505052122699, guid: aa498a5d732044a4e974e4691e1b8ce3, type: 3}
       propertyPath: m_Name
       value: TaskApp5
@@ -22002,11 +22010,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2896484293145391147, guid: aa498a5d732044a4e974e4691e1b8ce3, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 80
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2896484293145391147, guid: aa498a5d732044a4e974e4691e1b8ce3, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 80
+      value: 99
       objectReference: {fileID: 0}
     - target: {fileID: 2896484293145391147, guid: aa498a5d732044a4e974e4691e1b8ce3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22038,11 +22046,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2896484293145391147, guid: aa498a5d732044a4e974e4691e1b8ce3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -30
+      value: -29.999998
       objectReference: {fileID: 0}
     - target: {fileID: 2896484293145391147, guid: aa498a5d732044a4e974e4691e1b8ce3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -88
+      value: -82
       objectReference: {fileID: 0}
     - target: {fileID: 2896484293145391147, guid: aa498a5d732044a4e974e4691e1b8ce3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -22220,6 +22228,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: TaskApp, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 7803428643352347413, guid: aa498a5d732044a4e974e4691e1b8ce3, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7803428643352347413, guid: aa498a5d732044a4e974e4691e1b8ce3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e8354d6cce5248b4fb294edb51efb879, type: 3}
     - target: {fileID: 8795653505052122699, guid: aa498a5d732044a4e974e4691e1b8ce3, type: 3}
       propertyPath: m_Name
       value: TaskApp4

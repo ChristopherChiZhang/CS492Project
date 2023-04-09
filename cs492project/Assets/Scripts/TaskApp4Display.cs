@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,7 +39,7 @@ public class TaskAppDisplay4 : MonoBehaviour
         {
             giveUpPopup.SetActive(true);
         });
-        
+
         giveUpPopupAccept.onClick.AddListener(() =>
         {
             task.AddScoreAndReason(-500, "Gave up trying to unsubscribe from the newsletter!");
@@ -49,7 +48,7 @@ public class TaskAppDisplay4 : MonoBehaviour
         {
             giveUpPopup.SetActive(false);
         });
-        
+
 
         // start point
         cancelSubscription.onClick.AddListener(() =>

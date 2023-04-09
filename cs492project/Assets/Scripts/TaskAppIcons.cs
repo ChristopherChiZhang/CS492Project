@@ -18,7 +18,10 @@ public class TaskAppIcons : MonoBehaviour
         foreach (Transform child in transform)
         {
             TaskApp taskApp = child.GetComponent<TaskApp>();
-            child.gameObject.GetComponent<Button>().interactable = !gameStateManager.TaskIsComplete(taskApp);
+            if (taskApp != null)
+            {
+                child.gameObject.GetComponent<Button>().interactable = !gameStateManager.TaskIsComplete(taskApp);
+            }
         }
     }
 }

@@ -48,19 +48,17 @@ public class GameOverScript : MonoBehaviour
 
         for (int i = 0; i < totalScores; i++)
         {
-            string line = "";
             int scoreNum = PlayerPrefs.GetInt("scoreNum" + i);
             string scoreString = PlayerPrefs.GetString("scoreString" + i);
-            line += scoreNum + ": " + scoreString;
             totalScore += scoreNum;
 
             if (scoreNum > 0)
             {
-                scoreTextPos += line + Environment.NewLine;
+                scoreTextPos += "<color=green>" + scoreNum + "</color> " + scoreString + Environment.NewLine;
             }
             else
             {
-                scoreTextNeg += line + Environment.NewLine;
+                scoreTextNeg += "<color=red>" + scoreNum + "</color> " + scoreString + Environment.NewLine;
             }
 
         }

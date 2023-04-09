@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.InputSystem;
 
 public class TaskApp5Display : MonoBehaviour
 {
@@ -95,7 +94,8 @@ public class TaskApp5Display : MonoBehaviour
                     page4.SetActive(false);
                     page5.SetActive(true);
                     currentPage++;
-                } else
+                }
+                else
                 {
                     page4Error.SetActive(true);
                     page4Input.text = "";

@@ -1,9 +1,9 @@
+using System;
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 using UnityEngine.UI;
-using System.Collections;
-using System;
 
 public class GameOverScript : MonoBehaviour
 {
@@ -16,7 +16,8 @@ public class GameOverScript : MonoBehaviour
     public Button finalPopupYes;
     public Button finalPopupNo;
 
-    void Start() {
+    void Start()
+    {
         UpdateScoreText();
 
         finalPopupYes.onClick.AddListener(() =>
@@ -86,14 +87,12 @@ public class GameOverScript : MonoBehaviour
 
     public void RestartGame()
     {
-        Debug.Log("Game restarting");
         SceneManager.LoadScene("StartMenuScene");
 
     }
 
-    public void Quit() 
+    public void Quit()
     {
-        Debug.Log("Application closed");
         Application.Quit();
     }
 

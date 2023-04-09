@@ -48,7 +48,6 @@ public class GameStateManager : MonoBehaviour
     public void StartTask(TaskApp task)
     {
         currentTask = task;
-        Debug.Log("Started task: " + currentTask.name);
         UpdateTimerLocation(currentTask.timerXPos, currentTask.timerYPos);
         FindObjectOfType<TaskAppIcons>().gameObject.SetActive(false);
         FindObjectOfType<TaskAppDisplays>(true).EnableTask(currentTask);
@@ -73,7 +72,6 @@ public class GameStateManager : MonoBehaviour
         currentTask.TurnTimerOff(); // Stop timer
         currentTask.AddScoreAndReason(currentTask.GetTimeScore(), "Completed a task in " + (int)System.Math.Round(currentTask.duration) + " seconds.");
         UpdateGameOver(); // Set gameOver if true
-        Debug.Log("Task marked as completed: " + currentTask);
     }
 
     public bool TaskIsComplete(TaskApp task)
@@ -92,7 +90,6 @@ public class GameStateManager : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("All tasks complete.");
         List<int> scoreNums = new List<int>();
         List<string> scoreStrings = new List<string>();
         int totalScores = 0;

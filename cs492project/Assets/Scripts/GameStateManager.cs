@@ -38,13 +38,6 @@ public class GameStateManager : MonoBehaviour
         });
     }
 
-    public void CompleteAllTasks()
-    {
-        // This function is to be removed when every task has a way to exit from itself
-        tasks.Keys.ToList().ForEach(taskApp => { tasks[taskApp] = true; });
-        UpdateGameOver();
-    }
-
     public void StartTask(TaskApp task)
     {
         currentTask = task;

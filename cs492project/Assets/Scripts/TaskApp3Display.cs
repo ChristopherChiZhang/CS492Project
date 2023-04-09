@@ -112,7 +112,7 @@ public class TaskApp3Display : MonoBehaviour
                 smartwatchPopup.SetActive(false);
                 quickPage.SetActive(true);
             });
-            task.AddScoreAndReason(-250, "Shared sensitive health data.");
+            task.AddScoreAndReason(-250, "Prescription: Shared sensitive health data.");
         });
         submit.onClick.AddListener(() =>
         {

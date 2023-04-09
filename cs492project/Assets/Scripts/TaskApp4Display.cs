@@ -34,7 +34,7 @@ public class TaskAppDisplay4 : MonoBehaviour
     {
         giveUpButton.onClick.AddListener(() =>
         {
-            task.AddScoreAndReason(-500, "Gave up trying to unsubscribe from the newsletter!");
+            task.AddScoreAndReason(-500, "Newsletter: Gave up trying to unsubscribe from the newsletter!");
         });
 
         // start point

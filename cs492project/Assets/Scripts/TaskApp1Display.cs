@@ -23,7 +23,7 @@ public class TaskAppDisplay1 : MonoBehaviour
         });
         accept.onClick.AddListener(() =>
         {
-            task.AddScoreAndReason(-300, "Allowed third-party ad-tracking cookies.");
+            task.AddScoreAndReason(-300, "News: Allowed third-party ad-tracking cookies.");
             popup.SetActive(false);
             nextPage.interactable = true;
         });

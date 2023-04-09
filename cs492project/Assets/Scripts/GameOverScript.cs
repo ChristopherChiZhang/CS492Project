@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
+using System.Collections;
+using System;
 
 public class GameOverScript : MonoBehaviour
 {
@@ -9,45 +12,77 @@ public class GameOverScript : MonoBehaviour
     public TextMeshProUGUI scoreBreakdownNeg;
     public TextMeshProUGUI totalScoreText;
 
-    void Start() {
+    public GameObject finalPopup;
+    public Button finalPopupYes;
+    public Button finalPopupNo;
 
+    void Start() {
+        UpdateScoreText();
+
+        finalPopupYes.onClick.AddListener(() =>
+        {
+            PlayerPrefs.SetInt("scoreNum" + PlayerPrefs.GetInt("totalScores"), -1);
+            PlayerPrefs.SetString("scoreString" + PlayerPrefs.GetInt("totalScores"), "Data Racer: Shared your data with us. (Not actually, don't worry.)");
+            PlayerPrefs.SetInt("totalScores", PlayerPrefs.GetInt("totalScores") + 1);
+            UpdateScoreText();
+            finalPopup.SetActive(false);
+        });
+
+        finalPopupNo.onClick.AddListener(() =>
+        {
+            finalPopup.SetActive(false);
+        });
+
+        Delay(() => { finalPopup.SetActive(true); }, 1f);
+    }
+
+    private void UpdateScoreText()
+    {
         string scoreTextPos = "";
         string scoreTextNeg = "";
 
         int totalScores = PlayerPrefs.GetInt("totalScores");
         int totalScore = 0;
-        
-        
-        for (int i = 0; i < totalScores; i++) {
+
+
+        for (int i = 0; i < totalScores; i++)
+        {
             string line = "";
             int scoreNum = PlayerPrefs.GetInt("scoreNum" + i);
             string scoreString = PlayerPrefs.GetString("scoreString" + i);
             line += scoreNum + ": " + scoreString;
             totalScore += scoreNum;
 
-            if (scoreNum > 0) {
-                scoreTextPos += line + System.Environment.NewLine;
-            } else {
-                scoreTextNeg += line + System.Environment.NewLine;
+            if (scoreNum > 0)
+            {
+                scoreTextPos += line + Environment.NewLine;
             }
-            
+            else
+            {
+                scoreTextNeg += line + Environment.NewLine;
+            }
+
         }
 
-        if (scoreTextPos != "") {
+        if (scoreTextPos != "")
+        {
             scoreBreakdownPos.text = scoreTextPos;
-        } else {
+        }
+        else
+        {
             scoreBreakdownPos.text = "No positive scores :(";
         }
-        if (scoreTextNeg != "") {
+        if (scoreTextNeg != "")
+        {
             scoreBreakdownNeg.text = scoreTextNeg;
-        } else {
+        }
+        else
+        {
             scoreBreakdownNeg.text = "No negative scores :)";
         }
-        
+
         totalScoreText.text = "Total Score: " + totalScore;
     }
-
-
 
     public void RestartGame()
     {
@@ -60,5 +95,16 @@ public class GameOverScript : MonoBehaviour
     {
         Debug.Log("Application closed");
         Application.Quit();
+    }
+
+    private IEnumerator DelayCoroutine(Action callback, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        callback();
+    }
+
+    private void Delay(Action callback, float seconds)
+    {
+        StartCoroutine(DelayCoroutine(callback, seconds));
     }
 }

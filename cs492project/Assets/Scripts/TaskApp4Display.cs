@@ -28,8 +28,28 @@ public class TaskAppDisplay4 : MonoBehaviour
     public Button endSuccessButton;
     public Button endFailButton;
 
+    public Button giveUpButton;
+    public GameObject giveUpPopup;
+    public Button giveUpPopupAccept;
+    public Button giveUpPopupDeny;
+
     void Start()
     {
+
+        giveUpButton.onClick.AddListener(() =>
+        {
+            giveUpPopup.SetActive(true);
+        });
+        
+        giveUpPopupAccept.onClick.AddListener(() =>
+        {
+            task.AddScoreAndReason(-500, "Gave up trying to unsubscribe from the newsletter!");
+        });
+        giveUpPopupDeny.onClick.AddListener(() =>
+        {
+            giveUpPopup.SetActive(false);
+        });
+        
 
         // start point
         cancelSubscription.onClick.AddListener(() =>

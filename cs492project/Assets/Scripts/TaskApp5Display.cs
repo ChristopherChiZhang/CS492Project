@@ -40,7 +40,7 @@ public class TaskApp5Display : MonoBehaviour
     private TextMeshProUGUI currInput = null;
     private static string username = "chadgpt1984";
     private static string password = "************";
-    private static string captcha = "todo";
+    private static string captcha = "PRYVASEA";
     private float t = 0f;
     private int x = 0;
 
@@ -89,7 +89,7 @@ public class TaskApp5Display : MonoBehaviour
             overlay.DelayedExecute(() =>
             {
                 // Check captcha
-                if (page4Input.text == captcha)
+                if (page4Input.text.ToUpper() == captcha)
                 {
                     page4.SetActive(false);
                     page5.SetActive(true);
